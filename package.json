@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "@ngbracket/ngx-layout": "^22.0.1"
+  }
+}
