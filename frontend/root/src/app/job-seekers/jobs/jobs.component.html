@@ -1,0 +1,382 @@
+<div class="jobs-page" fxLayout="column" fxLayoutGap="20px">
+
+  <!-- Search / Filters -->
+
+  <div
+    class="filter-bar"
+    fxLayout="row"
+    fxLayoutAlign="start center"
+    fxLayoutGap="10px">
+
+    <!-- Search -->
+
+    <div
+      class="job-search"
+      fxLayout="row"
+      fxLayoutAlign="start center">
+
+      <mat-icon>search</mat-icon>
+
+      <input
+        type="text"
+        placeholder="Search jobs, title or company"
+        [(ngModel)]="searchText">
+
+    </div>
+
+
+    <!-- Location -->
+
+    <mat-form-field
+      appearance="outline"
+      class="filter-field">
+
+      <mat-label>Location</mat-label>
+
+      <mat-select [(value)]="selectedLocation">
+
+        <mat-option value="all">
+          All Locations
+        </mat-option>
+
+        <mat-option value="Bangalore">
+          Bangalore
+        </mat-option>
+
+        <mat-option value="Mumbai">
+          Mumbai
+        </mat-option>
+
+        <mat-option value="Delhi">
+          Delhi
+        </mat-option>
+
+        <mat-option value="Pune">
+          Pune
+        </mat-option>
+
+        <mat-option value="Gurgaon">
+          Gurgaon
+        </mat-option>
+
+      </mat-select>
+
+    </mat-form-field>
+
+
+    <!-- Job Type -->
+
+    <mat-form-field
+      appearance="outline"
+      class="filter-field">
+
+      <mat-label>Job Type</mat-label>
+
+      <mat-select [(value)]="selectedJobType">
+
+        <mat-option value="all">
+          All
+        </mat-option>
+
+        <mat-option value="FULL_TIME">
+          Full Time
+        </mat-option>
+
+        <mat-option value="PART_TIME">
+          Part Time
+        </mat-option>
+
+        <mat-option value="CONTRACT">
+          Contract
+        </mat-option>
+
+        <mat-option value="INTERNSHIP">
+          Internship
+        </mat-option>
+
+      </mat-select>
+
+    </mat-form-field>
+
+
+    <!-- Experience -->
+
+    <mat-form-field
+      appearance="outline"
+      class="filter-field">
+
+      <mat-label>Experience</mat-label>
+
+      <mat-select [(value)]="selectedExperience">
+
+        <mat-option value="all">
+          All
+        </mat-option>
+
+        <mat-option value="0-1">
+          0-1 Years
+        </mat-option>
+
+        <mat-option value="1-3">
+          1-3 Years
+        </mat-option>
+
+        <mat-option value="3-5">
+          3-5 Years
+        </mat-option>
+
+        <mat-option value="5+">
+          5+ Years
+        </mat-option>
+
+      </mat-select>
+
+    </mat-form-field>
+
+
+    <!-- More Filters -->
+
+    <!-- <button
+      mat-stroked-button
+      class="more-filter-button">
+
+      <mat-icon>tune</mat-icon>
+
+      More Filters
+
+    </button> -->
+
+
+    <!-- Sort -->
+
+    <!-- <div
+      class="sort-section"
+      fxFlex
+      fxLayout="row"
+      fxLayoutAlign="end center">
+
+      <span>Sort by:</span>
+
+      <mat-form-field
+        appearance="outline"
+        class="sort-field">
+
+        <mat-select [(value)]="sortBy">
+
+          <mat-option value="latest">
+            Latest
+          </mat-option>
+
+          <mat-option value="salary">
+            Salary
+          </mat-option>
+
+          <mat-option value="relevance">
+            Relevance
+          </mat-option>
+
+        </mat-select>
+
+      </mat-form-field>
+
+    </div> -->
+
+  </div>
+
+
+  <!-- Page heading -->
+
+  <div
+    class="jobs-heading"
+    fxLayout="row"
+    fxLayoutAlign="space-between center">
+
+    <div>
+
+      <h1>Jobs</h1>
+
+      <p>
+        Find your next opportunity
+      </p>
+
+    </div>
+
+    <span class="job-count">
+
+      {{ filteredJobs.length }} jobs found
+
+    </span>
+
+  </div>
+
+
+  <!-- Jobs List -->
+
+  <mat-card class="jobs-container">
+
+    <!-- Job -->
+
+    <div
+      class="job-item"
+      *ngFor="let job of filteredJobs">
+
+
+      <!-- Job information -->
+
+      <div
+        class="job-main-info"
+        fxFlex>
+
+        <!-- Job Title -->
+
+        <h2
+          [routerLink]="[
+            '/jobseekers/job-details',
+            job.job_id
+          ]"
+          class="job-title">
+
+          {{ job.title }}
+
+        </h2>
+
+
+        <!-- Company -->
+
+        <p class="company-name">
+
+          {{ job.company_name }}
+
+        </p>
+
+
+        <!-- Job Meta -->
+
+        <div
+          class="job-meta"
+          fxLayout="row"
+          fxLayoutAlign="start center"
+          fxLayoutGap="12px">
+
+          <!-- Location -->
+
+          <span>
+
+            <mat-icon>
+              location_on
+            </mat-icon>
+
+            {{ job.location }}
+
+          </span>
+
+
+          <!-- Posted Date -->
+
+          <span>
+
+            <mat-icon>
+              schedule
+            </mat-icon>
+
+            {{ job.created_at | date:'mediumDate' }}
+
+          </span>
+
+        </div>
+
+      </div>
+
+
+      <!-- Tags -->
+
+      <div
+        class="job-tags"
+        fxLayout="row"
+        fxLayoutGap="7px">
+
+
+        <!-- Job Type -->
+
+        <span class="tag full-time">
+
+          {{ job.job_type }}
+
+        </span>
+
+
+        <!-- Status -->
+
+        <span class="tag onsite">
+
+          {{ job.status }}
+
+        </span>
+
+      </div>
+
+
+      <!-- Salary -->
+
+      <div class="job-salary">
+
+        <strong>
+
+          ₹{{ job.salary_min / 100000 }}
+          -
+          ₹{{ job.salary_max / 100000 }}
+          LPA
+
+        </strong>
+
+      </div>
+
+
+      <!-- Actions -->
+
+      <div
+        class="job-actions"
+        fxLayout="row"
+        fxLayoutGap="8px">
+
+
+        <!-- Save -->
+
+        <button
+          mat-button
+          class="save-button"
+          (click)="saveJob(job)">
+
+          <mat-icon>
+
+            {{ job.saved
+              ? 'bookmark'
+              : 'bookmark_border'
+            }}
+
+          </mat-icon>
+
+          Save
+
+        </button>
+
+
+        <!-- Apply -->
+
+        <button
+          mat-raised-button
+          
+          class="apply-button"
+          (click)="applyJob(job)">
+
+          Apply
+
+        </button>
+
+      </div>
+
+    </div>
+
+  </mat-card>
+
+</div>

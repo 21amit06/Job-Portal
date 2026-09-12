@@ -1,0 +1,240 @@
+.profile-page {
+  width: 100%;
+}
+
+
+/* ================= HEADER ================= */
+
+.page-header {
+  margin-bottom: 24px;
+}
+
+.page-header h1 {
+  margin: 0;
+
+  font-size: 28px;
+  font-weight: 700;
+
+  color: #202124;
+}
+
+.page-header p {
+  margin: 6px 0 0;
+
+  font-size: 14px;
+  color: #737373;
+}
+
+
+/* ================= RECRUITER CARD ================= */
+
+.recruiter-card {
+  padding: 28px;
+
+  margin-bottom: 20px;
+
+  border-radius: 12px;
+
+  border: 1px solid #e5e7eb;
+
+  box-shadow: none;
+}
+
+
+/* Avatar */
+
+.profile-avatar {
+  width: 82px;
+  height: 82px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background: #e9e7ff;
+  color: #5146c9;
+
+  font-size: 24px;
+  font-weight: 700;
+}
+
+
+/* Information */
+
+.recruiter-info h2 {
+  margin: 0 0 5px;
+
+  font-size: 22px;
+  font-weight: 700;
+
+  color: #202124;
+}
+
+.recruiter-info > p {
+  margin: 0 0 12px;
+
+  font-size: 14px;
+  color: #666;
+}
+
+
+.profile-meta {
+  flex-wrap: wrap;
+}
+
+.profile-meta span {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+
+  font-size: 13px;
+  color: #737373;
+}
+
+.profile-meta mat-icon {
+  font-size: 18px;
+}
+
+
+/* ================= SECTION ================= */
+
+.section-card {
+  padding: 24px;
+
+  margin-bottom: 20px;
+
+  border-radius: 12px;
+
+  border: 1px solid #e5e7eb;
+
+  box-shadow: none;
+}
+
+
+.section-header {
+  margin-bottom: 20px;
+}
+
+.section-header h2 {
+  margin: 0 0 5px;
+
+  font-size: 18px;
+  font-weight: 700;
+
+  color: #202124;
+}
+
+.section-header p {
+  margin: 0;
+
+  font-size: 13px;
+  color: #737373;
+}
+
+
+/* ================= FORM ================= */
+
+.form-row {
+  width: 100%;
+}
+
+.full-width {
+  width: 100%;
+}
+
+
+/* ================= LOGO ================= */
+
+.logo-section {
+  padding: 18px;
+
+  border: 1px solid #eeeeee;
+
+  border-radius: 10px;
+}
+
+
+.company-logo {
+  width: 70px;
+  height: 70px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 12px;
+
+  background: #e9e7ff;
+  color: #5146c9;
+
+  font-size: 20px;
+  font-weight: 700;
+}
+
+
+.logo-section h3 {
+  margin: 0 0 5px;
+
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.logo-section p {
+  margin: 0 0 12px;
+
+  font-size: 12px;
+  color: #888;
+}
+
+
+/* ================= OVERVIEW ================= */
+
+.overview-grid {
+  width: 100%;
+  flex-wrap: wrap;
+}
+
+
+.overview-item {
+  flex: 1;
+
+  min-width: 180px;
+
+  padding: 18px;
+
+  display: flex;
+  align-items: center;
+
+  gap: 12px;
+
+  border: 1px solid #eeeeee;
+
+  border-radius: 10px;
+}
+
+
+.overview-item mat-icon {
+  color: #5146c9;
+}
+
+
+.overview-item span {
+  display: block;
+
+  margin-bottom: 4px;
+
+  font-size: 11px;
+  color: #999;
+}
+
+
+.overview-item strong {
+  display: block;
+
+  font-size: 13px;
+  font-weight: 600;
+
+  color: #333;
+}

@@ -1,0 +1,258 @@
+<div class="job-details-page" fxLayout="column">
+
+  <!-- Loading -->
+  <div
+    *ngIf="loading"
+    class="loading"
+    fxLayout="column"
+    fxLayoutAlign="center center">
+
+    <mat-icon>hourglass_empty</mat-icon>
+    <p>Loading job details...</p>
+
+  </div>
+
+
+  <!-- Selected Job -->
+  <mat-card
+    *ngIf="!loading && job"
+    class="job-details-card">
+
+    <!-- Header -->
+
+    <div
+      class="job-header"
+      fxLayout="row"
+      fxLayoutAlign="space-between start">
+
+      <div class="job-header-info">
+
+        <h1>
+          {{ job.title }}
+        </h1>
+
+        <p class="company-name">
+          {{ job.company_name || 'Independent Recruiter' }}
+        </p>
+
+      </div>
+
+
+      <!-- Bookmark -->
+
+      <button
+        mat-icon-button
+        class="bookmark-button"
+        (click)="saveJob()">
+
+        <mat-icon>
+          {{ job.saved ? 'bookmark' : 'bookmark_border' }}
+        </mat-icon>
+
+      </button>
+
+    </div>
+
+
+    <!-- Job Tags -->
+
+    <div
+      class="job-tags"
+      fxLayout="row"
+      fxLayoutGap="10px">
+
+      <span class="job-tag">
+        {{ job.job_type }}
+      </span>
+
+      <span class="job-tag">
+        {{ job.status }}
+      </span>
+
+    </div>
+
+
+    <!-- Job Information -->
+
+    <div
+      class="job-information"
+      fxLayout="row"
+      fxLayoutGap="40px">
+
+      <div
+        class="information-item"
+        fxLayout="row"
+        fxLayoutAlign="start center"
+        fxLayoutGap="8px">
+
+        <mat-icon>location_on</mat-icon>
+
+        <div>
+          <span>Location</span>
+          <p>{{ job.location || 'Not specified' }}</p>
+        </div>
+
+      </div>
+
+
+      <div
+        class="information-item"
+        fxLayout="row"
+        fxLayoutAlign="start center"
+        fxLayoutGap="8px">
+
+        <mat-icon>work_outline</mat-icon>
+
+        <div>
+          <span>Job Type</span>
+          <p>{{ job.job_type }}</p>
+        </div>
+
+      </div>
+
+
+      <div
+        class="information-item"
+        fxLayout="row"
+        fxLayoutAlign="start center"
+        fxLayoutGap="8px">
+
+        <mat-icon>payments</mat-icon>
+
+        <div>
+          <span>Salary</span>
+
+          <p>
+            ₹{{ job.salary_min | number }}
+            -
+            ₹{{ job.salary_max | number }}
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <div
+        class="information-item"
+        fxLayout="row"
+        fxLayoutAlign="start center"
+        fxLayoutGap="8px">
+
+        <mat-icon>schedule</mat-icon>
+
+        <div>
+          <span>Experience</span>
+          <p>{{ job.experience_required || 'Not specified' }}</p>
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- Description -->
+
+    <div class="section">
+
+      <h2>Job Description</h2>
+
+      <p>
+        {{ job.description || 'No description available.' }}
+      </p>
+
+    </div>
+
+
+    <!-- Requirements -->
+
+    <div class="section">
+
+      <h2>Requirements</h2>
+
+      <p>
+        {{ job.requirements || 'No requirements specified.' }}
+      </p>
+
+    </div>
+
+
+    <!-- Skills -->
+
+    <div class="section">
+
+      <h2>Skills</h2>
+
+      <p>
+        {{ job.skills || 'No skills specified.' }}
+      </p>
+
+    </div>
+
+
+    <!-- Vacancies -->
+
+    <div class="section">
+
+      <h2>Vacancies</h2>
+
+      <p>
+        {{ job.vacancies }}
+      </p>
+
+    </div>
+
+
+    <!-- Bottom Actions -->
+
+    <div
+      class="job-actions"
+      fxLayout="row"
+      fxLayoutAlign="end center"
+      fxLayoutGap="12px">
+
+      <button
+        mat-stroked-button
+        class="save-button"
+        (click)="saveJob()">
+
+        <mat-icon>
+          {{ job.saved ? 'bookmark' : 'bookmark_border' }}
+        </mat-icon>
+
+        {{ job.saved ? 'Saved' : 'Save Job' }}
+
+      </button>
+
+
+      <button
+        mat-raised-button
+        class="apply-button"
+        (click)="applyJob()">
+
+        Apply Now
+
+      </button>
+
+    </div>
+
+  </mat-card>
+
+
+  <!-- Job Not Found -->
+
+  <div
+    *ngIf="!loading && !job"
+    class="no-job"
+    fxLayout="column"
+    fxLayoutAlign="center center">
+
+    <mat-icon>work_off</mat-icon>
+
+    <h2>Job not found</h2>
+
+    <p>The selected job could not be found.</p>
+
+  </div>
+
+</div>

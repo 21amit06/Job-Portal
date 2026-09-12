@@ -1,0 +1,430 @@
+<div class="dashboard-page">
+
+  <!--  HEADER  -->
+
+  <div
+    class="dashboard-header"
+    fxLayout="row"
+    fxLayoutAlign="space-between center">
+
+    <div>
+
+      <h1>Recruiter Dashboard</h1>
+
+      <p>
+        Welcome back. Here's what's happening with your jobs.
+      </p>
+
+    </div>
+
+
+    <button
+      mat-flat-button
+      color="primary"
+      (click)="createJob()">
+
+      <mat-icon>add</mat-icon>
+
+      Post a Job
+
+    </button>
+
+  </div>
+
+
+  <!--  STATS  -->
+
+  <div
+    class="stats-container"
+    fxLayout="row"
+    fxLayoutGap="16px">
+
+    <mat-card
+      class="stat-card"
+      fxFlex
+      *ngFor="let stat of stats">
+
+      <div
+        fxLayout="row"
+        fxLayoutAlign="space-between center">
+
+        <div>
+
+          <p class="stat-title">
+            {{ stat.title }}
+          </p>
+
+          <h2>
+            {{ stat.value }}
+          </h2>
+
+        </div>
+
+
+        <div
+          class="stat-icon"
+          [ngClass]="stat.type">
+
+          <mat-icon>
+            {{ stat.icon }}
+          </mat-icon>
+
+        </div>
+
+      </div>
+
+    </mat-card>
+
+  </div>
+
+
+  <!--  MAIN CONTENT  -->
+
+  <div
+    class="main-grid"
+    fxLayout="row"
+    fxLayoutGap="20px">
+
+
+    <!--  RECENT JOBS  -->
+
+    <mat-card
+      class="content-card"
+      fxFlex="65%">
+
+      <div
+        class="card-header"
+        fxLayout="row"
+        fxLayoutAlign="space-between center">
+
+        <div>
+
+          <h2>Recent Job Posts</h2>
+
+          <p>
+            Manage your recently posted jobs
+          </p>
+
+        </div>
+
+
+        <button
+          mat-button
+          color="primary">
+
+          View All
+
+        </button>
+
+      </div>
+
+
+      <div class="jobs-list">
+
+        <div
+          class="job-row"
+          *ngFor="let job of recentJobs"
+          fxLayout="row"
+          fxLayoutAlign="space-between center">
+
+          <!-- Job Information -->
+
+          <div
+            fxLayout="row"
+            fxLayoutAlign="start center"
+            fxLayoutGap="14px">
+
+            <div class="job-icon">
+
+              <mat-icon>
+                work
+              </mat-icon>
+
+            </div>
+
+
+            <div>
+
+              <h3>
+                {{ job.title }}
+              </h3>
+
+              <div
+                class="job-meta"
+                fxLayout="row"
+                fxLayoutGap="15px">
+
+                <span>
+                  <mat-icon>location_on</mat-icon>
+                  {{ job.location }}
+                </span>
+
+                <span>
+                  <mat-icon>schedule</mat-icon>
+                  {{ job.job_type }}
+                </span>
+
+              </div>
+
+            </div>
+
+          </div>
+
+
+          <!-- Applicants -->
+
+          <div class="applicant-count">
+
+            <strong>
+              {{ job.applicants }}
+            </strong>
+
+            <span>
+              Applicants
+            </span>
+
+          </div>
+
+
+          <!-- Status -->
+
+          <span
+            class="status-badge"
+            [ngClass]="getStatusClass(job.status)">
+
+            {{ job.status }}
+
+          </span>
+
+
+          <!-- Action -->
+
+          <button
+            mat-icon-button
+            (click)="viewJob(job)">
+
+            <mat-icon>
+              more_vert
+            </mat-icon>
+
+          </button>
+
+        </div>
+
+      </div>
+
+    </mat-card>
+
+
+    <!--  QUICK ACTIONS  -->
+
+    <mat-card
+      class="content-card"
+      fxFlex>
+
+      <div class="card-header">
+
+        <h2>Quick Actions</h2>
+
+        <p>
+          Manage your recruitment activities
+        </p>
+
+      </div>
+
+
+      <div
+        class="quick-actions"
+        fxLayout="column"
+        fxLayoutGap="12px">
+
+
+        <button
+          mat-stroked-button
+          class="quick-action"
+          (click)="createJob()">
+
+          <mat-icon>add_circle</mat-icon>
+
+          <span>Post a New Job</span>
+
+        </button>
+
+
+        <button
+          mat-stroked-button
+          class="quick-action"
+          [routerLink]="['/recuriter/applicant']">
+
+          <mat-icon>people</mat-icon>
+
+          <span>View Applicants</span>
+
+        </button>
+
+
+        <button
+          mat-stroked-button
+          class="quick-action"
+           [routerLink]="['/recuriter/interviews']">
+
+          <mat-icon>event</mat-icon>
+
+          <span>Schedule Interview</span>
+
+        </button>
+
+
+        <button
+          mat-stroked-button
+          class="quick-action">
+
+          <mat-icon>assessment</mat-icon>
+
+          <span>View Assessments</span>
+
+        </button>
+
+      </div>
+
+    </mat-card>
+
+  </div>
+
+
+  <!--  RECENT APPLICANTS  -->
+
+  <mat-card class="content-card applicants-card">
+
+    <div
+      class="card-header"
+      fxLayout="row"
+      fxLayoutAlign="space-between center">
+
+      <div>
+
+        <h2>Recent Applicants</h2>
+
+        <p>
+          Candidates who recently applied to your jobs
+        </p>
+
+      </div>
+
+
+      <button
+        mat-button
+        color="primary">
+
+        View All Applicants
+
+      </button>
+
+    </div>
+
+<div class="applicants-list">
+
+  <div
+    class="applicant-row"
+    *ngFor="let applicant of recentApplicants"
+    fxLayout="row"
+    fxLayoutAlign="space-between center">
+
+
+    <!-- Candidate -->
+
+    <div
+      fxLayout="row"
+      fxLayoutAlign="start center"
+      fxLayoutGap="14px">
+
+      <div class="candidate-avatar">
+
+        {{ getInitials(applicant.applicant_name) }}
+
+      </div>
+
+
+      <div>
+
+        <h3>
+          {{ applicant.applicant_name }}
+        </h3>
+
+        <p>
+          {{ applicant.job_title }}
+        </p>
+
+      </div>
+
+    </div>
+
+
+    <!-- Email -->
+
+    <div class="experience">
+
+      <span>
+        Email
+      </span>
+
+      <strong>
+        {{ applicant.applicant_email }}
+      </strong>
+
+    </div>
+
+
+    <!-- Applied -->
+
+    <div class="applied">
+
+      <span>
+        Applied
+      </span>
+
+      <strong>
+        {{ applicant.applied_at | date:'dd MMM yyyy' }}
+      </strong>
+
+    </div>
+
+
+    <!-- Status -->
+
+    <span
+      class="status-badge"
+      [ngClass]="getStatusClass(applicant.status)">
+
+      {{ applicant.status }}
+
+    </span>
+
+
+    <!-- Action -->
+
+    <button
+      mat-icon-button
+      (click)="viewApplicant(applicant)">
+
+      <mat-icon>
+        chevron_right
+      </mat-icon>
+
+    </button>
+
+  </div>
+
+
+  <div
+    *ngIf="recentApplicants.length === 0"
+    class="empty-state">
+
+    No applicants yet.
+
+  </div>
+
+</div>
+  </mat-card>
+
+</div>

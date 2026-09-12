@@ -1,0 +1,522 @@
+<div class="profile-page">
+
+  <!-- ================= HEADER ================= -->
+
+  <div
+    class="page-header"
+    fxLayout="row"
+    fxLayoutAlign="space-between center">
+
+    <div>
+
+      <h1>Recruiter Profile</h1>
+
+      <p>
+        Manage your personal and company information
+      </p>
+
+    </div>
+
+
+    <div>
+
+      <!-- Edit -->
+
+      <button
+        mat-stroked-button
+        *ngIf="!isEditing"
+        (click)="toggleEdit()">
+
+        <mat-icon>edit</mat-icon>
+
+        Edit Profile
+
+      </button>
+
+
+      <!-- Save -->
+
+      <button
+        mat-flat-button
+        color="primary"
+        *ngIf="isEditing"
+        (click)="saveProfile()">
+
+        <mat-icon>save</mat-icon>
+
+        Save Changes
+
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <!-- ================= RECRUITER INFORMATION ================= -->
+
+  <mat-card class="recruiter-card">
+
+    <div
+      fxLayout="row"
+      fxLayoutAlign="start center"
+      fxLayoutGap="24px">
+
+      <!-- Avatar -->
+
+      <div class="profile-avatar">
+        JD
+      </div>
+
+
+      <!-- Information -->
+
+      <div class="recruiter-info">
+
+        <h2>
+          {{ recruiter.firstName }}
+          {{ recruiter.lastName }}
+        </h2>
+
+        <p>
+          Recruiter at {{ recruiter.companyName }}
+        </p>
+
+
+        <div
+          class="profile-meta"
+          fxLayout="row"
+          fxLayoutGap="20px">
+
+          <span>
+
+            <mat-icon>email</mat-icon>
+
+            {{ recruiter.email }}
+
+          </span>
+
+
+          <span>
+
+            <mat-icon>phone</mat-icon>
+
+            {{ recruiter.phone }}
+
+          </span>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </mat-card>
+
+
+  <!-- ================= PERSONAL INFORMATION ================= -->
+
+  <mat-card class="section-card">
+
+    <div class="section-header">
+
+      <h2>Personal Information</h2>
+
+      <p>
+        Your recruiter account information
+      </p>
+
+    </div>
+
+
+    <div
+      class="form-row"
+      fxLayout="row"
+      fxLayoutGap="20px">
+
+      <mat-form-field
+        appearance="outline"
+        fxFlex>
+
+        <mat-label>First Name</mat-label>
+
+        <input
+          matInput
+          [(ngModel)]="recruiter.firstName"
+          [disabled]="!isEditing">
+
+      </mat-form-field>
+
+
+      <mat-form-field
+        appearance="outline"
+        fxFlex>
+
+        <mat-label>Last Name</mat-label>
+
+        <input
+          matInput
+          [(ngModel)]="recruiter.lastName"
+          [disabled]="!isEditing">
+
+      </mat-form-field>
+
+    </div>
+
+
+    <div
+      class="form-row"
+      fxLayout="row"
+      fxLayoutGap="20px">
+
+      <mat-form-field
+        appearance="outline"
+        fxFlex>
+
+        <mat-label>Email</mat-label>
+
+        <input
+          matInput
+          type="email"
+          [(ngModel)]="recruiter.email"
+          [disabled]="!isEditing">
+
+      </mat-form-field>
+
+
+      <mat-form-field
+        appearance="outline"
+        fxFlex>
+
+        <mat-label>Phone</mat-label>
+
+        <input
+          matInput
+          [(ngModel)]="recruiter.phone"
+          [disabled]="!isEditing">
+
+      </mat-form-field>
+
+    </div>
+
+  </mat-card>
+
+
+  <!-- ================= COMPANY INFORMATION ================= -->
+
+  <mat-card class="section-card">
+
+    <div class="section-header">
+
+      <h2>Company Information</h2>
+
+      <p>
+        Information about your company
+      </p>
+
+    </div>
+
+
+    <!-- Company Name -->
+
+    <mat-form-field
+      appearance="outline"
+      class="full-width">
+
+      <mat-label>Company Name</mat-label>
+
+      <input
+        matInput
+        [(ngModel)]="recruiter.companyName"
+        [disabled]="!isEditing">
+
+    </mat-form-field>
+
+
+    <!-- Industry + Company Size -->
+
+    <div
+      class="form-row"
+      fxLayout="row"
+      fxLayoutGap="20px">
+
+      <mat-form-field
+        appearance="outline"
+        fxFlex>
+
+        <mat-label>Industry</mat-label>
+
+        <mat-select
+          [(ngModel)]="recruiter.industry"
+          [disabled]="!isEditing">
+
+          <mat-option value="Information Technology">
+            Information Technology
+          </mat-option>
+
+          <mat-option value="Finance">
+            Finance
+          </mat-option>
+
+          <mat-option value="Healthcare">
+            Healthcare
+          </mat-option>
+
+          <mat-option value="Education">
+            Education
+          </mat-option>
+
+          <mat-option value="E-commerce">
+            E-commerce
+          </mat-option>
+
+          <mat-option value="Consulting">
+            Consulting
+          </mat-option>
+
+        </mat-select>
+
+      </mat-form-field>
+
+
+      <mat-form-field
+        appearance="outline"
+        fxFlex>
+
+        <mat-label>Company Size</mat-label>
+
+        <mat-select
+          [(ngModel)]="recruiter.companySize"
+          [disabled]="!isEditing">
+
+          <mat-option value="1-10 Employees">
+            1-10 Employees
+          </mat-option>
+
+          <mat-option value="11-50 Employees">
+            11-50 Employees
+          </mat-option>
+
+          <mat-option value="51-200 Employees">
+            51-200 Employees
+          </mat-option>
+
+          <mat-option value="201-500 Employees">
+            201-500 Employees
+          </mat-option>
+
+          <mat-option value="500+ Employees">
+            500+ Employees
+          </mat-option>
+
+        </mat-select>
+
+      </mat-form-field>
+
+    </div>
+
+
+    <!-- Location + Website -->
+
+    <div
+      class="form-row"
+      fxLayout="row"
+      fxLayoutGap="20px">
+
+      <mat-form-field
+        appearance="outline"
+        fxFlex>
+
+        <mat-label>Location</mat-label>
+
+        <input
+          matInput
+          [(ngModel)]="recruiter.location"
+          [disabled]="!isEditing">
+
+      </mat-form-field>
+
+
+      <mat-form-field
+        appearance="outline"
+        fxFlex>
+
+        <mat-label>Website</mat-label>
+
+        <input
+          matInput
+          [(ngModel)]="recruiter.website"
+          [disabled]="!isEditing">
+
+      </mat-form-field>
+
+    </div>
+
+
+    <!-- About Company -->
+
+    <mat-form-field
+      appearance="outline"
+      class="full-width">
+
+      <mat-label>About Company</mat-label>
+
+      <textarea
+        matInput
+        rows="5"
+        [(ngModel)]="recruiter.about"
+        [disabled]="!isEditing">
+      </textarea>
+
+    </mat-form-field>
+
+  </mat-card>
+
+
+  <!-- ================= COMPANY LOGO ================= -->
+
+  <!-- <mat-card class="section-card">
+
+    <div class="section-header">
+
+      <h2>Company Logo</h2>
+
+      <p>
+        Your company logo will appear on your job postings
+      </p>
+
+    </div>
+
+
+    <div
+      class="logo-section"
+      fxLayout="row"
+      fxLayoutAlign="start center"
+      fxLayoutGap="18px">
+
+      <div class="company-logo">
+        TS
+      </div>
+
+
+      <div>
+
+        <h3>
+          Tech Solutions Inc.
+        </h3>
+
+        <p>
+          JPG, PNG or SVG. Maximum size 2MB.
+        </p>
+
+
+        <button
+          mat-stroked-button
+          *ngIf="isEditing">
+
+          <mat-icon>upload</mat-icon>
+
+          Upload Logo
+
+        </button>
+
+      </div>
+
+    </div>
+
+  </mat-card> -->
+
+
+  <!-- ================= COMPANY SUMMARY ================= -->
+
+  <mat-card class="section-card">
+
+    <div class="section-header">
+
+      <h2>Company Overview</h2>
+
+      <p>
+        Quick overview of your company profile
+      </p>
+
+    </div>
+
+
+    <div
+      class="overview-grid"
+      fxLayout="row"
+      fxLayoutGap="16px">
+
+
+      <div class="overview-item">
+
+        <mat-icon>business</mat-icon>
+
+        <div>
+
+          <span>Company</span>
+
+          <strong>
+            {{ recruiter.companyName }}
+          </strong>
+
+        </div>
+
+      </div>
+
+
+      <div class="overview-item">
+
+        <mat-icon>category</mat-icon>
+
+        <div>
+
+          <span>Industry</span>
+
+          <strong>
+            {{ recruiter.industry }}
+          </strong>
+
+        </div>
+
+      </div>
+
+
+      <div class="overview-item">
+
+        <mat-icon>groups</mat-icon>
+
+        <div>
+
+          <span>Company Size</span>
+
+          <strong>
+            {{ recruiter.companySize }}
+          </strong>
+
+        </div>
+
+      </div>
+
+
+      <div class="overview-item">
+
+        <mat-icon>location_on</mat-icon>
+
+        <div>
+
+          <span>Location</span>
+
+          <strong>
+            {{ recruiter.location }}
+          </strong>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </mat-card>
+
+</div>

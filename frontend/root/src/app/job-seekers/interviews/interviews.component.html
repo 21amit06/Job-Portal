@@ -1,0 +1,337 @@
+<div class="interviews-page">
+
+  <!-- Page Header -->
+  <div
+    class="page-header"
+    fxLayout="row"
+    fxLayoutAlign="space-between center">
+
+    <div>
+
+      <h1>Interviews</h1>
+
+      <p>
+        Manage your upcoming and previous interviews
+      </p>
+
+    </div>
+
+  </div>
+
+
+  <!-- Upcoming Interviews -->
+
+  <div class="section-title">
+
+    <h2>
+      Upcoming Interviews
+    </h2>
+
+  </div>
+
+
+  <div
+    class="interview-list"
+    fxLayout="column"
+    fxLayoutGap="16px">
+
+
+    <!-- Interview Card -->
+
+    <mat-card
+      class="interview-card"
+      *ngFor="let interview of interviews">
+
+
+      <div
+        fxLayout="row"
+        fxLayoutAlign="space-between center"
+        fxLayoutGap="20px">
+
+
+        <!-- LEFT -->
+
+        <div
+          class="interview-main"
+          fxLayout="row"
+          fxLayoutAlign="start center"
+          fxLayoutGap="16px">
+
+
+          <!-- Company Logo -->
+
+          <div class="company-logo">
+
+            CN|{{
+              interview.company_name
+                ?.substring(0, 2)
+                ?.toUpperCase()
+            }}
+
+          </div>
+
+
+          <!-- Interview Information -->
+
+          <div class="interview-info">
+
+            <h3>
+              {{ interview.title }}
+            </h3>
+
+
+            <p class="company-name">
+
+              companyName|{{ interview.company_name }}
+
+            </p>
+
+
+            <div
+              class="interview-meta"
+              fxLayout="row"
+              fxLayoutGap="35px">
+
+
+              <!-- Date -->
+
+              <span 
+              fxLayout="column"
+              fxLayoutAlign="start center"
+              fxLayoutGap="4px">
+
+                <mat-icon>
+                  calendar_today
+                </mat-icon>
+
+                {{
+                  interview.scheduled_date
+                    | date:'dd MMM yyyy'
+                }}
+
+              </span>
+
+
+              <!-- Time -->
+
+              <span fxLayout="column"
+              fxLayoutAlign="start center"
+              fxLayoutGap="4px">
+
+                <mat-icon>
+                  schedule
+                </mat-icon>
+
+                {{
+                  interview.scheduled_time
+                }}
+
+              </span>
+
+
+              <!-- Interview Type -->
+
+              <span
+              fxLayout="column"
+              fxLayoutAlign="start center"
+              fxLayoutGap="4px">
+
+                <mat-icon>
+                  videocam
+                </mat-icon>
+
+                {{
+                  getInterviewType(interview)
+                }}
+
+              </span>
+
+
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <!-- RIGHT -->
+
+        <div
+          class="interview-actions"
+          fxLayout="column"
+          fxLayoutAlign="center end"
+          fxLayoutGap="12px">
+
+
+          <!-- Status -->
+
+          <span
+            class="status-badge"
+            [ngClass]="
+              getStatusClass(interview.status)
+            ">
+
+            {{
+              getStatusText(interview.status)
+            }}
+
+          </span>
+
+
+          <!-- Buttons -->
+
+          <div
+            fxLayout="row"
+            fxLayoutGap="8px">
+
+
+            <button
+              mat-stroked-button
+              (click)="viewDetails(interview)">
+
+              View Details
+
+            </button>
+
+
+            <button
+              mat-flat-button
+              color="primary"
+              *ngIf="
+                interview.status === 'SCHEDULED' ||
+                interview.status === 'RESCHEDULED'
+              "
+              (click)="joinInterview(interview)">
+
+
+              <mat-icon>
+                videocam
+              </mat-icon>
+
+
+              Join Interview
+
+            </button>
+
+
+          </div>
+
+
+        </div>
+
+      </div>
+
+    </mat-card>
+
+
+    <!-- No Upcoming Interviews -->
+
+    <mat-card
+      class="empty-card"
+      *ngIf="upcomingInterviews.length === 0"
+      fxLayout="column"
+      fxLayoutAlign="start center"
+      fxLayoutGap="3px">
+
+      <mat-icon 
+      >
+        event_busy
+      </mat-icon>
+
+      <h3>
+        No upcoming interviews
+      </h3>
+
+      <p>
+        You don't have any upcoming interviews.
+      </p>
+
+    </mat-card>
+
+
+  </div>
+
+
+  <!-- Interviewer Information -->
+
+  <!-- <mat-card
+    class="interviewer-card"
+    *ngFor="let interview of interviews">
+
+    <div
+      fxLayout="row"
+      fxLayoutAlign="space-between center">
+
+
+      <div>
+
+        <p class="small-label">
+          INTERVIEWER
+        </p>
+
+        <div class="interviewerName"
+        fxLayout="row"
+        fxLayoutGap="10px"
+        fxLayoutAlign="start center">
+          <mat-icon class="person-icon">
+        person
+      </mat-icon>
+
+        <h3>
+          {{ interview.interviewer_name }}
+        </h3>
+        </div>
+        
+
+      </div>
+
+
+     
+
+
+    </div>
+
+  </mat-card> -->
+
+
+  <!-- Interview Tips -->
+
+  <!-- <mat-card class="tips-card">
+
+    <div
+      fxLayout="row"
+      fxLayoutAlign="start center"
+      fxLayoutGap="16px">
+
+
+      <div class="tips-icon">
+
+        <mat-icon>
+          lightbulb
+        </mat-icon>
+
+      </div>
+
+
+      <div>
+
+        <h3>
+          Interview Tips
+        </h3>
+
+        <p>
+
+          Make sure your camera and microphone are working
+          before joining the interview. Research the company
+          and prepare a few questions for the interviewer.
+
+        </p>
+
+      </div>
+
+
+    </div>
+
+  </mat-card> -->
+
+</div>

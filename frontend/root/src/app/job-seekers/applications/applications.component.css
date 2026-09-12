@@ -1,0 +1,345 @@
+.applications-page {
+  width: 100%;
+  max-width: 1400px;
+  margin: auto;
+}
+
+
+/* -------------------------
+   HEADER
+------------------------- */
+
+.page-header h1 {
+  margin: 0;
+
+  font-size: 22px;
+
+  font-weight: 700;
+
+  color: #111827;
+}
+
+.page-header p {
+  margin: 6px 0 0;
+
+  font-size: 12px;
+
+  color: #6b7280;
+}
+
+
+/* -------------------------
+   TABS
+------------------------- */
+
+.application-tabs {
+  height: 42px;
+
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.tab-button {
+  position: relative;
+
+  border: none;
+
+  background: transparent;
+
+  padding: 0;
+
+  font-size: 11px;
+
+  font-weight: 500;
+
+  color: #6b7280;
+
+  cursor: pointer;
+}
+
+.tab-button:hover {
+  color: #4338ca;
+}
+
+.tab-button.active {
+  color: #4338ca;
+
+  font-weight: 600;
+}
+
+.tab-button.active::after {
+  content: '';
+
+  position: absolute;
+
+  left: 0;
+  right: 0;
+  bottom: -1px;
+
+  height: 2px;
+
+  background: #4338ca;
+
+  border-radius: 2px;
+}
+
+
+/* -------------------------
+   TABLE CARD
+------------------------- */
+
+.applications-card {
+  padding: 0;
+
+  overflow: hidden;
+
+  border-radius: 9px;
+
+  border: 1px solid #e8ebf0;
+
+  box-shadow:
+    0 2px 10px rgba(0, 0, 0, 0.03) !important;
+}
+
+
+/* -------------------------
+   TABLE
+------------------------- */
+
+table {
+  width: 100%;
+
+  border-collapse: collapse;
+
+  table-layout: fixed;
+}
+
+thead {
+  background: #fafbfc;
+}
+
+th {
+  height: 45px;
+
+  padding: 0 18px;
+
+  text-align: left;
+
+  font-size: 12px;
+
+  font-weight: 600;
+
+  color: #6b7280;
+
+  border-bottom: 1px solid #e8ebf0;
+}
+
+td {
+  height: 68px;
+
+  padding: 0 18px;
+
+  font-size: 10px;
+
+  color: #374151;
+
+  border-bottom: 1px solid #ffff;
+}
+
+tbody tr:last-child td {
+  border-bottom: none;
+}
+
+
+/* Column widths */
+
+th:nth-child(1),
+td:nth-child(1) {
+  width: 32%;
+}
+
+th:nth-child(2),
+td:nth-child(2) {
+  width: 22%;
+}
+
+th:nth-child(3),
+td:nth-child(3) {
+  width: 17%;
+}
+
+th:nth-child(4),
+td:nth-child(4) {
+  width: 17%;
+}
+
+th:nth-child(5),
+td:nth-child(5) {
+  width: 12%;
+}
+
+
+/* -------------------------
+   JOB CELL
+------------------------- */
+
+.job-cell {
+  min-width: 0;
+}
+
+.company-logo {
+  width: 34px;
+  height: 34px;
+
+  min-width: 34px;
+
+  border-radius: 6px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  font-size: 9px;
+
+  font-weight: 700;
+  background-color: #6d98f4;
+  border-radius: 50%;
+}
+
+.company-logo.blue {
+  background: #eaf2ff;
+  color: #2563eb;
+}
+
+.company-logo.pink {
+  background: #ffe8f1;
+  color: #db2777;
+}
+
+.company-logo.dark-blue {
+  background: #e8f0ff;
+  color: #1d4ed8;
+}
+
+.company-logo.green {
+  background: #e8f8ef;
+  color: #16a34a;
+}
+
+.company-logo.orange {
+  background: #fff0e5;
+  color: #ea580c;
+}
+
+.job-title {
+  margin-bottom: 4px;
+
+  font-size: 12px;
+
+  font-weight: 600;
+
+  color: #111827;
+}
+
+.job-type {
+  font-size: 10px;
+  font-weight: 400;
+  color: #9ca3af;
+}
+
+
+/* -------------------------
+   COMPANY
+------------------------- */
+
+.company-name {
+  font-size: 12px;
+
+  color: #4b5563;
+}
+
+
+/* -------------------------
+   DATE
+------------------------- */
+
+.applied-date {
+  font-size: 12px;
+
+  color: #596273;
+}
+
+
+/* -------------------------
+   STATUS
+------------------------- */
+
+.status {
+  display: inline-flex;
+
+  align-items: center;
+
+  padding: 5px 10px;
+
+  border-radius: 12px;
+
+  font-size: 9px;
+
+  font-weight: 500;
+}
+
+.status-applied {
+  background: #e7f8ef;
+
+  color: #16834a;
+}
+
+.status-review {
+  background: #fff3d9;
+
+  color: #d97706;
+}
+
+.status-interview {
+  background: #eeeaff;
+
+  color: #6d42d8;
+}
+
+.status-offer {
+  background: #e6f8ef;
+
+  color: #159447;
+}
+
+
+/* -------------------------
+   VIEW BUTTON
+------------------------- */
+
+.view-button {
+  height: 30px;
+
+  min-width: 52px;
+
+  padding: 0 12px;
+
+  font-size: 10px;
+
+  color: #4b5563;
+
+  border-color: #dfe3e8;
+}
+
+
+/* -------------------------
+   EMPTY
+------------------------- */
+
+.empty-state {
+  height: 120px;
+
+  text-align: center;
+
+  color: #9ca3af;
+}

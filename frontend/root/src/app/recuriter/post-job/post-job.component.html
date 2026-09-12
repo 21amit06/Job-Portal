@@ -1,0 +1,246 @@
+<div class="post-job-page">
+
+  <div class="page-header">
+    <h1>Post a Job</h1>
+    <p>Create a new job opening for candidates</p>
+  </div>
+
+  <mat-card class="job-form-card">
+
+    <form #jobForm="ngForm" (ngSubmit)="postJob()">
+
+      <div fxLayout="column" fxLayoutGap="20px">
+
+        <!-- Job Title -->
+
+        <mat-form-field appearance="outline">
+          <mat-label>Job Title</mat-label>
+
+          <input
+            matInput
+            name="title"
+            [(ngModel)]="job.title"
+            placeholder="e.g. Software Engineer"
+            required
+          >
+
+        </mat-form-field>
+
+
+        <!-- Description -->
+
+        <mat-form-field appearance="outline">
+
+          <mat-label>Job Description</mat-label>
+
+          <textarea
+            matInput
+            name="description"
+            [(ngModel)]="job.description"
+            rows="5"
+            placeholder="Describe the job..."
+            required
+          ></textarea>
+
+        </mat-form-field>
+
+
+        <!-- Requirements -->
+
+        <mat-form-field appearance="outline">
+
+          <mat-label>Requirements</mat-label>
+
+          <textarea
+            matInput
+            name="requirements"
+            [(ngModel)]="job.requirements"
+            rows="4"
+            placeholder="Enter job requirements..."
+          ></textarea>
+
+        </mat-form-field>
+
+
+        <!-- Location -->
+
+        <mat-form-field appearance="outline">
+
+          <mat-label>Location</mat-label>
+
+          <input
+            matInput
+            name="location"
+            [(ngModel)]="job.location"
+            placeholder="e.g. Bangalore"
+          >
+
+        </mat-form-field>
+
+
+        <!-- Job Type -->
+
+        <mat-form-field appearance="outline">
+
+          <mat-label>Job Type</mat-label>
+
+          <mat-select
+            name="job_type"
+            [(ngModel)]="job.job_type"
+            required
+          >
+
+            <mat-option value="FULL_TIME">
+              Full Time
+            </mat-option>
+
+            <mat-option value="PART_TIME">
+              Part Time
+            </mat-option>
+
+            <mat-option value="CONTRACT">
+              Contract
+            </mat-option>
+
+            <mat-option value="INTERNSHIP">
+              Internship
+            </mat-option>
+
+          </mat-select>
+
+        </mat-form-field>
+
+
+        <!-- Salary -->
+
+        <div
+          fxLayout="row"
+          fxLayoutGap="20px"
+        >
+
+          <mat-form-field
+            appearance="outline"
+            fxFlex
+          >
+
+            <mat-label>Minimum Salary</mat-label>
+
+            <input
+              matInput
+              type="number"
+              name="salary_min"
+              [(ngModel)]="job.salary_min"
+              placeholder="e.g. 500000"
+            >
+
+          </mat-form-field>
+
+
+          <mat-form-field
+            appearance="outline"
+            fxFlex
+          >
+
+            <mat-label>Maximum Salary</mat-label>
+
+            <input
+              matInput
+              type="number"
+              name="salary_max"
+              [(ngModel)]="job.salary_max"
+              placeholder="e.g. 800000"
+            >
+
+          </mat-form-field>
+
+        </div>
+
+
+        <!-- Experience -->
+
+        <mat-form-field appearance="outline">
+
+          <mat-label>Experience Required</mat-label>
+
+          <input
+            matInput
+            name="experience_required"
+            [(ngModel)]="job.experience_required"
+            placeholder="e.g. 0-2 years"
+          >
+
+        </mat-form-field>
+
+
+        <!-- Skills -->
+
+        <mat-form-field appearance="outline">
+
+          <mat-label>Skills</mat-label>
+
+          <input
+            matInput
+            name="skills"
+            [(ngModel)]="job.skills"
+            placeholder="e.g. Angular, Node.js, PostgreSQL"
+          >
+
+        </mat-form-field>
+
+
+        <!-- Vacancies -->
+
+        <mat-form-field appearance="outline">
+
+          <mat-label>Number of Vacancies</mat-label>
+
+          <input
+            matInput
+            type="number"
+            name="vacancies"
+            [(ngModel)]="job.vacancies"
+            min="1"
+          >
+
+        </mat-form-field>
+
+
+        <!-- Buttons -->
+
+        <div
+          fxLayout="row"
+          fxLayoutAlign="end center"
+          fxLayoutGap="15px"
+        >
+
+          <button
+            mat-stroked-button
+            type="button"
+            (click)="cancel()"
+          >
+            Cancel
+          </button>
+
+
+          <button
+            mat-raised-button
+            color="primary"
+            type="submit"
+            [disabled]="jobForm.invalid"
+          >
+
+            <mat-icon>add</mat-icon>
+
+            Post Job
+
+          </button>
+
+        </div>
+
+      </div>
+
+    </form>
+
+  </mat-card>
+
+</div>

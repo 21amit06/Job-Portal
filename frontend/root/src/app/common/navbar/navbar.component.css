@@ -1,0 +1,145 @@
+.top-navbar {
+  height: 72px;
+  min-height: 72px;
+
+  background: #ffffff;
+
+  border-bottom: 1px solid #e5e7eb;
+
+  padding: 0 28px;
+
+  box-sizing: border-box;
+}
+
+/* Logo */
+
+.logo-section {
+  width: 220px;
+}
+
+.logo-icon {
+  color: #4338ca;
+  font-size: 30px;
+  width: 30px;
+  height: 30px;
+  margin-right: 10px;
+}
+
+.logo-text {
+  font-size: 23px;
+  font-weight: 700;
+  color: #111827;
+}
+
+.logo-text span {
+  color: #3047d8;
+}
+
+/* Search */
+
+.navbar-search {
+  width: 350px;
+  height: 40px;
+
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+
+  padding: 0 12px;
+
+  box-sizing: border-box;
+}
+
+.navbar-search mat-icon {
+  font-size: 20px;
+  color: #6b7280;
+  margin-right: 8px;
+}
+
+.navbar-search input {
+  width: 100%;
+  border: none;
+  outline: none;
+
+  font-size: 13px;
+  color: #374151;
+}
+
+.navbar-search input::placeholder {
+  color: #9ca3af;
+}
+
+/* Notification */
+
+.notification-button {
+  position: relative;
+  margin-right: 20px;
+}
+
+.notification-button mat-icon {
+  color: #4b5563;
+}
+
+.notification-count {
+  position: absolute;
+
+  top: 2px;
+  right: 0;
+
+  width: 16px;
+  height: 16px;
+
+  border-radius: 50%;
+
+  background: #ef4444;
+  color: white;
+
+  font-size: 9px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* User */
+
+.user-section {
+  cursor: pointer;
+}
+
+.user-avatar {
+  width: 36px;
+  height: 36px;
+
+  border-radius: 50%;
+
+  background: #243b8f;
+  color: white;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.user-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.user-name {
+  font-size: 13px;
+  font-weight: 600;
+  color: #111827;
+}
+
+.user-role {
+  font-size: 10px;
+  color: #6b7280;
+}
+
+.dropdown-icon {
+  font-size: 18px;
+  color: #6b7280;
+}

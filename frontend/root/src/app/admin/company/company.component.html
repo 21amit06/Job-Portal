@@ -1,0 +1,356 @@
+<div class="company-page" fxLayout="column" fxLayoutGap="24px">
+
+  <!-- Header -->
+  <div
+    class="page-header"
+    fxLayout="row"
+    fxLayoutAlign="space-between center"
+  >
+
+    <div fxLayout="column" fxLayoutGap="4px">
+      <h1>Companies</h1>
+      <p>Manage companies registered on the platform</p>
+    </div>
+
+  </div>
+
+
+  <!-- Filters -->
+  <mat-card class="filter-card">
+
+    <div class="filter-container"
+      fxLayout="row"
+      fxLayoutAlign="start center"
+      fxLayoutGap="16px"
+    >
+
+      <!-- Search -->
+      <mat-form-field
+        appearance="outline"
+        class="search-field"
+        fxFlex
+      >
+
+        <!-- <mat-label>Search companies</mat-label> -->
+        <div class="searchinput">
+           <mat-icon >search</mat-icon>
+        <input
+          matInput
+          [(ngModel)]="searchText"
+          placeholder="Company name, recruiter or location"
+        >
+        </div>
+        
+
+        
+      </mat-form-field>
+
+
+      <!-- Status -->
+      <mat-form-field
+        appearance="outline"
+        class="filter-field"
+      >
+        <mat-label>Status</mat-label>
+
+        <mat-select [(ngModel)]="selectedStatus">
+
+          <mat-option value="All">
+            All
+          </mat-option>
+
+          <mat-option value="Active">
+            Active
+          </mat-option>
+
+          <mat-option value="Pending">
+            Pending
+          </mat-option>
+
+          <mat-option value="Suspended">
+            Suspended
+          </mat-option>
+
+        </mat-select>
+
+      </mat-form-field>
+
+
+      <!-- Industry -->
+      <mat-form-field
+        appearance="outline"
+        class="filter-field"
+      >
+        <mat-label>Industry</mat-label>
+
+        <mat-select [(ngModel)]="selectedIndustry">
+
+          <mat-option value="All">
+            All
+          </mat-option>
+
+          <mat-option value="Technology">
+            Technology
+          </mat-option>
+
+          <mat-option value="Healthcare">
+            Healthcare
+          </mat-option>
+
+          <mat-option value="Finance">
+            Finance
+          </mat-option>
+
+          <mat-option value="Design">
+            Design
+          </mat-option>
+
+          <mat-option value="Education">
+            Education
+          </mat-option>
+
+        </mat-select>
+
+      </mat-form-field>
+
+    </div>
+
+  </mat-card>
+
+
+  <!-- Company Table -->
+  <mat-card class="table-card">
+
+    <div class="table-container">
+
+      <table>
+
+        <thead>
+
+          <tr>
+
+            <th>Company</th>
+
+            <th>Recruiter</th>
+
+            <th>Industry</th>
+
+            <th>Location</th>
+
+            <th>Jobs</th>
+
+            <th>Joined</th>
+
+            <th>Status</th>
+
+            <th>Actions</th>
+
+          </tr>
+
+        </thead>
+
+
+        <tbody>
+
+          <tr *ngFor="let company of filteredCompanies">
+
+            <!-- Company -->
+            <td>
+
+              <div
+                fxLayout="row"
+                fxLayoutAlign="start center"
+                fxLayoutGap="12px"
+              >
+
+                <div class="company-logo">
+                  {{ company.name.charAt(0) }}
+                </div>
+
+                <div fxLayout="column">
+
+                  <span class="company-name">
+                    {{ company.name }}
+                  </span>
+
+                  <span class="company-email">
+                    {{ company.email }}
+                  </span>
+
+                </div>
+
+              </div>
+
+            </td>
+
+
+            <!-- Recruiter -->
+            <td>
+              {{ company.recruiter }}
+            </td>
+
+
+            <!-- Industry -->
+            <td>
+              {{ company.industry }}
+            </td>
+
+
+            <!-- Location -->
+            <td>
+
+              <div
+                fxLayout="row"
+                fxLayoutAlign="start center"
+                fxLayoutGap="5px"
+              >
+
+                <mat-icon class="location-icon">
+                  location_on
+                </mat-icon>
+
+                {{ company.location }}
+
+              </div>
+
+            </td>
+
+
+            <!-- Jobs -->
+            <td>
+              {{ company.jobs }}
+            </td>
+
+
+            <!-- Joined -->
+            <td>
+              {{ company.joined }}
+            </td>
+
+
+            <!-- Status -->
+            <td>
+
+              <span
+                class="status"
+                [ngClass]="{
+                  'active': company.status === 'Active',
+                  'pending': company.status === 'Pending',
+                  'suspended': company.status === 'Suspended'
+                }"
+              >
+
+                {{ company.status }}
+
+              </span>
+
+            </td>
+
+
+            <!-- Actions -->
+            <td>
+
+              <button
+                mat-icon-button
+                matTooltip="View Company"
+                (click)="viewCompany(company)"
+              >
+                <mat-icon>visibility</mat-icon>
+              </button>
+
+
+              <button
+                mat-icon-button
+                [matMenuTriggerFor]="companyMenu"
+              >
+                <mat-icon>more_vert</mat-icon>
+              </button>
+
+
+              <mat-menu #companyMenu="matMenu">
+
+                <button
+                  mat-menu-item
+                  (click)="viewCompany(company)"
+                >
+                  <mat-icon>visibility</mat-icon>
+                  <span>View Company</span>
+                </button>
+
+
+                <button
+                  mat-menu-item
+                  *ngIf="company.status === 'Pending'"
+                  (click)="approveCompany(company)"
+                >
+                  <mat-icon>check_circle</mat-icon>
+                  <span>Approve Company</span>
+                </button>
+
+
+                <button
+                  mat-menu-item
+                  (click)="toggleCompanyStatus(company)"
+                >
+
+                  <mat-icon>
+                    {{
+                      company.status === 'Active'
+                        ? 'block'
+                        : 'check_circle'
+                    }}
+                  </mat-icon>
+
+                  <span>
+                    {{
+                      company.status === 'Active'
+                        ? 'Suspend Company'
+                        : 'Activate Company'
+                    }}
+                  </span>
+
+                </button>
+
+
+                <button
+                  mat-menu-item
+                  (click)="deleteCompany(company)"
+                >
+                  <mat-icon>delete</mat-icon>
+                  <span>Delete Company</span>
+                </button>
+
+              </mat-menu>
+
+            </td>
+
+          </tr>
+
+
+          <!-- No Data -->
+          <tr *ngIf="filteredCompanies.length === 0">
+
+            <td
+              colspan="8"
+              class="no-data"
+            >
+
+              <mat-icon>
+                business
+              </mat-icon>
+
+              <p>No companies found</p>
+
+            </td>
+
+          </tr>
+
+        </tbody>
+
+      </table>
+
+    </div>
+
+  </mat-card>
+
+</div>

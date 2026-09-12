@@ -1,0 +1,229 @@
+.resume-ai-page {
+  padding: 30px;
+  box-sizing: border-box;
+}
+
+.page-header h1 {
+  margin: 0;
+  font-size: 28px;
+  font-weight: 600;
+}
+
+.page-header p {
+  margin: 8px 0 0;
+  color: #6b7280;
+  font-size: 14px;
+}
+
+.upload-card {
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: none;
+  border: 1px solid #e5e7eb;
+}
+
+.upload-icon {
+  width: 60px;
+  height: 60px;
+  font-size: 60px;
+}
+
+.upload-card h2 {
+  margin: 0;
+  font-size: 20px;
+}
+
+.upload-text {
+  margin: 0;
+  color: #6b7280;
+}
+
+.file-info {
+  color: #6b7280;
+  font-size: 12px;
+}
+
+.selected-file {
+  margin-top: 30px;
+  padding: 14px;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+}
+
+.file-name {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.file-size {
+  margin-top: 4px;
+  color: #6b7280;
+  font-size: 12px;
+}
+
+.find-jobs-section {
+  margin-top: 30px;
+}
+
+
+/* Resume Analysis */
+
+.analysis-card {
+  padding: 24px;
+  border-radius: 12px;
+  box-shadow: none;
+  border: 1px solid #e5e7eb;
+}
+
+.analysis-card h2 {
+  margin: 0;
+  font-size: 20px;
+}
+
+.analysis-section {
+  margin-top: 20px;
+}
+
+.analysis-section h3 {
+  margin: 0 0 8px;
+  font-size: 14px;
+}
+
+
+/* Chips */
+
+.skill-chip,
+.role-chip {
+  display: inline-block;
+  padding: 6px 10px;
+  border-radius: 20px;
+  background: #f3f4f6;
+  font-size: 12px;
+}
+
+.role-chip {
+  background: #eeeeff;
+}
+
+
+/* Jobs */
+
+.jobs-section {
+  margin-top: 5px;
+}
+
+.section-header h2 {
+  margin: 0;
+  font-size: 22px;
+}
+
+.section-header p {
+  margin: 5px 0 15px;
+  color: #6b7280;
+  font-size: 14px;
+}
+
+.job-card {
+  padding: 22px;
+  border-radius: 12px;
+  box-shadow: none;
+  border: 1px solid #e5e7eb;
+}
+
+.job-title {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.company,
+.job-location {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #4b5563;
+  font-size: 14px;
+}
+
+.company mat-icon,
+.job-location mat-icon {
+  width: 18px;
+  height: 18px;
+  font-size: 18px;
+}
+
+.job-type {
+  color: #6b7280;
+  font-size: 13px;
+}
+
+.matched-skills {
+  margin-top: 8px;
+}
+
+.matched-label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.match-section {
+  min-width: 90px;
+}
+
+.match-percentage {
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.match-label {
+  color: #6b7280;
+  font-size: 12px;
+}
+
+.job-bottom {
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px solid #e5e7eb;
+}
+
+.no-jobs-card {
+  padding: 40px;
+  text-align: center;
+  box-shadow: none;
+  border: 1px solid #e5e7eb;
+}
+
+.no-jobs-card mat-icon {
+  font-size: 45px;
+  width: 45px;
+  height: 45px;
+}
+
+.no-jobs-card h2 {
+  margin: 12px 0 5px;
+}
+
+.no-jobs-card p {
+  margin: 0;
+  color: #6b7280;
+}
+
+.info-card {
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: none;
+  border: 1px solid #e5e7eb;
+}
+
+.info-card h3 {
+  margin: 0 0 6px;
+  font-size: 16px;
+}
+
+.info-card p {
+  margin: 0;
+  color: #6b7280;
+  font-size: 14px;
+}

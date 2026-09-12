@@ -1,0 +1,244 @@
+/*
+   MAIN PAGE
+   */
+
+.post-job-page {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+
+/*
+   PAGE HEADER
+   */
+
+.page-header {
+  width: 100%;
+  margin-bottom: 24px;
+  box-sizing: border-box;
+}
+
+.page-header h1 {
+  margin: 0;
+  font-family: 'Mulish', sans-serif;
+  font-size: 28px;
+  font-weight: 600;
+  line-height: 36px;
+  color: #001333;
+}
+
+.page-header p {
+  margin: 6px 0 0;
+  font-family: 'Mulish', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  color: #667085;
+}
+
+
+/*
+   FORM CARD
+   */
+
+.job-form-card {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  padding: 28px;
+  box-sizing: border-box;
+
+  background: #ffffff;
+  border: 1px solid #e4e6eb;
+  border-radius: 12px;
+  box-shadow: none !important;
+}
+
+
+/*
+   FORM
+   */
+
+.job-form-card form {
+  width: 100%;
+  min-width: 0;
+}
+
+
+/*
+   FORM FIELDS
+   */
+
+.job-form-card mat-form-field {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+
+/* Material form field height */
+
+::ng-deep .job-form-card .mat-mdc-text-field-wrapper {
+  min-height: 52px !important;
+}
+
+::ng-deep .job-form-card .mat-mdc-form-field-infix {
+  min-height: 52px !important;
+  box-sizing: border-box;
+}
+
+
+/*
+   LABEL
+   */
+
+::ng-deep .job-form-card .mat-mdc-floating-label {
+  font-family: 'Mulish', sans-serif;
+  font-size: 13px;
+}
+
+
+/*
+   INPUT / TEXTAREA
+   */
+
+::ng-deep .job-form-card input,
+::ng-deep .job-form-card textarea {
+  font-family: 'Mulish', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  color: #001333;
+}
+
+::ng-deep .job-form-card input::placeholder,
+::ng-deep .job-form-card textarea::placeholder {
+  color: #98a2b3;
+  font-size: 13px;
+}
+
+
+/* Textarea */
+
+::ng-deep .job-form-card textarea {
+  resize: vertical;
+}
+
+
+/*
+   SALARY ROW
+   */
+
+.job-form-card form > div > div[fxlayout="row"] {
+  width: 100%;
+  min-width: 0;
+}
+
+
+/*
+   BUTTON SECTION
+   */
+
+.job-form-card button {
+  font-family: 'Mulish', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.job-form-card button mat-icon {
+  font-size: 18px;
+  width: 18px;
+  height: 18px;
+  margin-right: 4px;
+}
+
+
+/*
+   RESPONSIVE
+   */
+
+@media (max-width: 768px) {
+
+  .page-header h1 {
+    font-size: 24px;
+    line-height: 32px;
+  }
+
+  .page-header p {
+    font-size: 13px;
+  }
+
+  .job-form-card {
+    padding: 20px;
+  }
+
+  /* Salary fields become vertical */
+  .job-form-card form > div > div[fxlayout="row"] {
+    flex-direction: column !important;
+    gap: 20px !important;
+  }
+
+  .job-form-card form > div > div[fxlayout="row"] mat-form-field {
+    width: 100%;
+  }
+}
+
+
+@media (max-width: 500px) {
+
+  .page-header {
+    margin-bottom: 18px;
+  }
+
+  .page-header h1 {
+    font-size: 22px;
+    line-height: 30px;
+  }
+
+  .page-header p {
+    font-size: 12px;
+    line-height: 18px;
+  }
+
+  .job-form-card {
+    padding: 16px;
+    border-radius: 10px;
+  }
+
+  /* Smaller gap between form fields */
+  .job-form-card form > div {
+    gap: 16px !important;
+  }
+
+  /* Buttons stack */
+  .job-form-card form > div > div:last-child {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 10px !important;
+  }
+
+  .job-form-card form > div > div:last-child button {
+    width: 100%;
+  }
+}
+
+
+@media (max-width: 360px) {
+
+  .job-form-card {
+    padding: 12px;
+  }
+
+  .page-header h1 {
+    font-size: 20px;
+  }
+
+  ::ng-deep .job-form-card input,
+  ::ng-deep .job-form-card textarea {
+    font-size: 12px;
+  }
+
+  .job-form-card button {
+    font-size: 12px;
+  }
+}

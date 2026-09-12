@@ -1,0 +1,513 @@
+<div class="applicants-page">
+
+  <!-- Header -->
+
+  <div
+    class="page-header"
+    fxLayout="row"
+    fxLayoutAlign="space-between center"
+  >
+
+    <div>
+
+      <h1>Applicants</h1>
+
+      <p>
+        Review and manage candidates who applied to your jobs
+      </p>
+
+    </div>
+
+  </div>
+
+
+  <!-- Filters -->
+
+  <mat-card class="filter-card">
+
+    <div
+      fxLayout="row"
+      fxLayoutGap="16px"
+      fxLayoutAlign="start center"
+    >
+
+      <!-- Search -->
+
+      <mat-form-field
+        appearance="outline"
+        class="search-field"
+      >
+
+        <!-- <mat-label>
+          Search applicants
+        </mat-label> -->
+          <div class="searchinput">
+          <mat-icon matPrefix>
+          search
+        </mat-icon>
+
+        <input
+          matInput
+          [(ngModel)]="searchText"
+          placeholder="Search by name or email"
+        >
+          </div>
+        
+
+      </mat-form-field>
+
+
+      <!-- Job -->
+
+      <mat-form-field
+        appearance="outline"
+        class="filter-field"
+      >
+
+        <mat-label>
+          Job
+        </mat-label>
+
+        <mat-select
+          [(ngModel)]="selectedJob"
+        >
+
+          <mat-option value="All">
+            All Jobs
+          </mat-option>
+
+          <!-- Jobs come from database -->
+
+          <mat-option
+            *ngFor="let job of jobTitles"
+            [value]="job"
+          >
+            {{ job }}
+          </mat-option>
+
+        </mat-select>
+
+      </mat-form-field>
+
+
+      <!-- Status -->
+
+      <mat-form-field
+        appearance="outline"
+        class="filter-field"
+      >
+
+        <mat-label>
+          Status
+        </mat-label>
+
+        <mat-select
+          [(ngModel)]="selectedStatus"
+        >
+
+          <mat-option value="All">
+            All Status
+          </mat-option>
+
+          <mat-option value="Applied">
+            Applied
+          </mat-option>
+
+          <mat-option value="Shortlisted">
+            Shortlisted
+          </mat-option>
+
+          <mat-option value="Interview">
+            Interview
+          </mat-option>
+
+          <mat-option value="Selected">
+            Selected
+          </mat-option>
+
+          <mat-option value="Rejected">
+            Rejected
+          </mat-option>
+
+        </mat-select>
+
+      </mat-form-field>
+
+    </div>
+
+  </mat-card>
+
+
+  <!-- Count -->
+
+  <div class="applicant-count">
+
+   Total applicants applied for job: {{ filteredApplicants.length }}
+
+  </div>
+
+
+  <!-- Applicants -->
+
+  <div
+    fxLayout="column"
+    fxLayoutGap="16px"
+  >
+
+    <!-- Applicant Card -->
+
+    <mat-card
+      class="applicant-card"
+      *ngFor="let applicant of filteredApplicants"
+    >
+
+      <!-- Candidate Header -->
+
+      <div
+        fxLayout="row"
+        fxLayoutAlign="space-between start"
+      >
+
+        <!-- Candidate Information -->
+
+        <div
+          fxLayout="row"
+          fxLayoutGap="16px"
+        >
+
+          <!-- Avatar -->
+
+          <div class="candidate-avatar">
+
+            {{ getInitials(applicant.applicant_name) }}
+
+          </div>
+
+
+          <!-- Candidate -->
+
+          <div>
+
+            <!-- Name + Status -->
+
+            <div
+              fxLayout="row"
+              fxLayoutGap="10px"
+              fxLayoutAlign="start center"
+            >
+
+              <h2>
+
+                {{ applicant.applicant_name }}
+
+              </h2>
+
+
+              <!-- Status -->
+
+              <span
+                class="status-badge"
+
+                [class.applied]="
+                  applicant.status === 'APPLIED'
+                "
+
+                [class.shortlisted]="
+                  applicant.status === 'SHORTLISTED'
+                "
+
+                [class.interview]="
+                  applicant.status === 'INTERVIEW'
+                "
+
+                [class.selected]="
+                  applicant.status === 'SELECTED'
+                "
+
+                [class.rejected]="
+                  applicant.status === 'REJECTED'
+                "
+              >
+
+                {{ getStatusText(applicant.status) }}
+
+              </span>
+
+            </div>
+
+
+            <!-- Email -->
+
+            <p class="email">
+
+              <mat-icon>
+                email
+              </mat-icon>
+
+              {{ applicant.applicant_email }}
+
+            </p>
+
+          </div>
+
+        </div>
+
+
+        <!-- Menu -->
+
+        <button
+          mat-icon-button
+          [matMenuTriggerFor]="menu"
+        >
+
+          <mat-icon>
+            more_vert
+          </mat-icon>
+
+        </button>
+
+
+        <mat-menu #menu="matMenu">
+
+          <!-- View Profile -->
+
+          <button
+            mat-menu-item
+            (click)="viewApplicant(applicant)"
+          >
+
+            <mat-icon>
+              visibility
+            </mat-icon>
+
+            <span>
+              View Profile
+            </span>
+
+          </button>
+
+
+          <!-- Download Resume -->
+
+          <button
+            mat-menu-item
+            (click)="downloadResume(applicant)"
+          >
+
+            <mat-icon>
+              download
+            </mat-icon>
+
+            <span>
+              Download Resume
+            </span>
+
+          </button>
+
+        </mat-menu>
+
+      </div>
+
+
+      <!-- Applicant Details -->
+
+      <div
+        class="applicant-details"
+        fxLayout="row"
+        fxLayoutGap="50px"
+      >
+
+        <!-- Applied For -->
+
+        <div class="detail">
+
+          <mat-icon>
+            work
+          </mat-icon>
+
+          <div>
+
+            <span>
+              Applied For
+            </span>
+
+            <strong>
+
+              {{ applicant.job_title }}
+
+            </strong>
+
+          </div>
+
+        </div>
+
+
+        <!-- Experience -->
+
+        <div class="detail">
+
+          <mat-icon>
+            work_history
+          </mat-icon>
+
+          <div>
+
+            <span>
+              Experience
+            </span>
+
+            <strong>
+
+              {{ applicant.experience || 'Not specified' }}
+
+            </strong>
+
+          </div>
+
+        </div>
+
+
+        <!-- Applied Date -->
+
+        <div class="detail">
+
+          <mat-icon>
+            calendar_today
+          </mat-icon>
+
+          <div>
+
+            <span>
+              Applied On
+            </span>
+
+            <strong>
+
+              {{ getAppliedDate(applicant.applied_at) }}
+
+            </strong>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- Actions -->
+
+      <div
+        class="card-footer"
+        fxLayout="row"
+        fxLayoutAlign="end center"
+        fxLayoutGap="10px"
+      >
+
+        <!-- View Profile -->
+
+        <button
+          mat-stroked-button
+          (click)="viewApplicant(applicant)"
+        >
+
+          View Profile
+
+        </button>
+
+
+        <!-- Shortlist -->
+
+        <button
+          mat-stroked-button
+
+          *ngIf="
+            applicant.status === 'APPLIED'
+          "
+
+          (click)="shortlist(applicant)"
+        >
+
+          <mat-icon>
+            star
+          </mat-icon>
+
+          Shortlist
+
+        </button>
+
+
+        <!-- Schedule Interview -->
+
+        <button
+          mat-raised-button
+          color="primary"
+
+          *ngIf="
+            applicant.status === 'SHORTLISTED'
+          "
+
+          (click)="scheduleInterview(applicant)"
+        >
+
+          <mat-icon>
+            event
+          </mat-icon>
+
+          Schedule Interview
+
+        </button>
+
+
+        <!-- Select -->
+
+        <button
+          mat-raised-button
+          color="primary"
+
+          *ngIf="
+            applicant.status === 'INTERVIEW'
+          "
+
+          (click)="selectApplicant(applicant)"
+        >
+
+          <mat-icon>
+            check_circle
+          </mat-icon>
+
+          Select
+
+        </button>
+
+      </div>
+
+    </mat-card>
+
+
+    <!-- Empty State -->
+
+    <mat-card
+      class="empty-card"
+
+      *ngIf="
+        filteredApplicants.length === 0
+      "
+    >
+
+      <mat-icon>
+        person_off
+      </mat-icon>
+
+      <h2>
+        No applicants found
+      </h2>
+
+      <p>
+        Try changing your search or filters.
+      </p>
+
+    </mat-card>
+
+  </div>
+
+</div>

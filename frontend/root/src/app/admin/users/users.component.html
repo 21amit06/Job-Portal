@@ -1,0 +1,370 @@
+<div class="users-page">
+
+  <!-- Header -->
+
+  <div class="page-header">
+
+    <h1>Users</h1>
+
+    <p>
+      Manage all users registered on the platform
+    </p>
+
+  </div>
+
+
+  <!-- Filters -->
+
+  <mat-card class="filter-card">
+
+    <div
+      fxLayout="row"
+      fxLayoutGap="16px"
+      fxLayoutAlign="start center"
+    >
+
+      <!-- Search -->
+
+      <mat-form-field
+        appearance="outline"
+        class="search-field"
+        fxFlex
+      >
+
+        <div class="searchinput">
+
+          <mat-icon>
+            search
+          </mat-icon>
+
+          <input
+            matInput
+            [(ngModel)]="searchText"
+            placeholder="Name or email"
+          >
+
+        </div>
+
+      </mat-form-field>
+
+
+      <!-- Role -->
+
+      <mat-form-field
+        appearance="outline"
+        class="filter-field"
+      >
+
+        <mat-label>
+          Role
+        </mat-label>
+
+        <mat-select
+          [(ngModel)]="selectedRole"
+        >
+
+          <mat-option value="All">
+            All Roles
+          </mat-option>
+
+          <mat-option value="Job Seeker">
+            Job Seeker
+          </mat-option>
+
+          <mat-option value="Recruiter">
+            Recruiter
+          </mat-option>
+
+          <mat-option value="Admin">
+            Admin
+          </mat-option>
+
+        </mat-select>
+
+      </mat-form-field>
+
+
+      <!-- Status -->
+
+      <mat-form-field
+        appearance="outline"
+        class="filter-field"
+      >
+
+        <mat-label>
+          Status
+        </mat-label>
+
+        <mat-select
+          [(ngModel)]="selectedStatus"
+        >
+
+          <mat-option value="All">
+            All Status
+          </mat-option>
+
+          <mat-option value="Active">
+            Active
+          </mat-option>
+
+          <mat-option value="Inactive">
+            Inactive
+          </mat-option>
+
+          <mat-option value="Pending">
+            Pending
+          </mat-option>
+
+        </mat-select>
+
+      </mat-form-field>
+
+    </div>
+
+  </mat-card>
+
+
+  <!-- Count -->
+
+  <div class="user-count">
+
+    {{ filteredUsers.length }} Users are using this application
+
+  </div>
+
+
+  <!-- Users Table -->
+
+  <mat-card class="table-card">
+
+    <div class="table-header">
+
+      <div class="user-column">
+        User
+      </div>
+
+      <div class="role-column">
+        Role
+      </div>
+
+      <div class="date-column">
+        Joined
+      </div>
+
+      <div class="status-column">
+        Status
+      </div>
+
+      <div class="action-column">
+        Actions
+      </div>
+
+    </div>
+
+
+    <!-- User Row -->
+
+    <div
+      class="user-row"
+      *ngFor="let user of filteredUsers"
+    >
+
+      <!-- User -->
+
+      <div
+        class="user-column"
+        fxLayout="row"
+        fxLayoutAlign="start center"
+        fxLayoutGap="12px"
+      >
+
+        <div class="user-avatar">
+
+          {{ getInitial(user) }}
+
+        </div>
+
+        <div class="user-info">
+
+          <strong>
+
+            {{ getUserName(user) }}
+
+          </strong>
+
+          <span>
+
+            {{ user.email }}
+
+          </span>
+
+        </div>
+
+      </div>
+
+
+      <!-- Role -->
+
+      <div class="role-column">
+
+        <span
+          class="role-badge"
+          [class.recruiter]="user.role === 'Recruiter'"
+          [class.jobseeker]="user.role === 'Job Seeker'"
+        >
+
+          {{ user.role }}
+
+        </span>
+
+      </div>
+
+
+      <!-- Joined -->
+
+      <div class="date-column">
+
+        {{ user.joined }}
+
+      </div>
+
+
+      <!-- Status -->
+
+      <div class="status-column">
+
+        <span
+          class="status-badge"
+          [class.active]="user.status === 'Active'"
+          [class.inactive]="user.status === 'Inactive'"
+          [class.pending]="user.status === 'Pending'"
+        >
+
+          {{ user.status }}
+
+        </span>
+
+      </div>
+
+
+      <!-- Actions -->
+
+      <div class="action-column">
+
+        <button
+          mat-icon-button
+          (click)="viewUser(user)"
+          matTooltip="View User"
+        >
+
+          <mat-icon>
+            visibility
+          </mat-icon>
+
+        </button>
+
+
+        <button
+          mat-icon-button
+          [matMenuTriggerFor]="menu"
+        >
+
+          <mat-icon>
+            more_vert
+          </mat-icon>
+
+        </button>
+
+
+        <mat-menu #menu="matMenu">
+
+          <button
+            mat-menu-item
+            (click)="viewUser(user)"
+          >
+
+            <mat-icon>
+              person
+            </mat-icon>
+
+            <span>
+              View Profile
+            </span>
+
+          </button>
+
+
+          <button
+            mat-menu-item
+            (click)="toggleStatus(user)"
+          >
+
+            <mat-icon>
+
+              {{
+                user.status === 'Active'
+                  ? 'block'
+                  : 'check_circle'
+              }}
+
+            </mat-icon>
+
+            <span>
+
+              {{
+                user.status === 'Active'
+                  ? 'Deactivate'
+                  : 'Activate'
+              }}
+
+            </span>
+
+          </button>
+
+
+          <button
+            mat-menu-item
+            (click)="deleteUser(user)"
+          >
+
+            <mat-icon>
+              delete
+            </mat-icon>
+
+            <span>
+              Delete User
+            </span>
+
+          </button>
+
+        </mat-menu>
+
+      </div>
+
+    </div>
+
+
+    <!-- Empty -->
+
+    <div
+      class="empty-state"
+      *ngIf="filteredUsers.length === 0"
+    >
+
+      <mat-icon>
+        person_off
+      </mat-icon>
+
+      <h2>
+        No users found
+      </h2>
+
+      <p>
+        Try changing your search or filters.
+      </p>
+
+    </div>
+
+  </mat-card>
+
+</div>

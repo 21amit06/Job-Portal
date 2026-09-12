@@ -1,0 +1,185 @@
+<div
+  class="login-page"
+  fxLayout="row"
+  fxLayoutAlign="center center"
+>
+
+  <mat-card class="login-card">
+
+    <!-- Logo / Heading -->
+
+    <div
+      class="login-header"
+      fxLayout="column"
+      fxLayoutAlign="center center"
+      fxLayoutGap="8px"
+    >
+
+      <div class="logo">
+        <mat-icon>work</mat-icon>
+      </div>
+
+      <h1>JobPortal</h1>
+
+      <p>Login to your account</p>
+
+    </div>
+
+
+    <!-- Login Form -->
+
+    <form
+      fxLayout="column"
+      fxLayoutGap="16px"
+      (ngSubmit)="login()"
+    >
+
+      <!-- Email -->
+
+      <mat-form-field
+        appearance="outline"
+        class="full-width"
+      >
+
+        <mat-label>Email</mat-label>
+
+        <mat-icon matPrefix>
+          email
+        </mat-icon>
+
+        <input
+          matInput
+          type="email"
+          name="email"
+          [(ngModel)]="loginData.email"
+          placeholder="Enter your email"
+          required
+        >
+
+      </mat-form-field>
+
+
+      <!-- Password -->
+
+      <mat-form-field
+        appearance="outline"
+        class="full-width"
+      >
+
+        <mat-label>Password</mat-label>
+
+        <mat-icon matPrefix>
+          lock
+        </mat-icon>
+
+        <input
+          matInput
+          [type]="hidePassword ? 'password' : 'text'"
+          name="password"
+          [(ngModel)]="loginData.password"
+          placeholder="Enter your password"
+          required
+        >
+
+        <button
+          mat-icon-button
+          matSuffix
+          type="button"
+          (click)="hidePassword = !hidePassword"
+        >
+
+          <mat-icon>
+            {{ hidePassword ? 'visibility' : 'visibility_off' }}
+          </mat-icon>
+
+        </button>
+
+      </mat-form-field>
+
+
+      <!-- Forgot Password -->
+
+      <div
+        fxLayout="row"
+        fxLayoutAlign="end center"
+      >
+
+        <a class="forgot-password">
+          Forgot password?
+        </a>
+
+      </div>
+
+
+      <!-- Login Button -->
+
+      <button
+        mat-raised-button
+        color="primary"
+        type="submit"
+        class="login-button"
+      >
+
+        Login
+
+      </button>
+
+    </form>
+
+
+    <!-- Register -->
+
+    <div
+      class="register-section"
+      fxLayout="row"
+      fxLayoutAlign="center center"
+      fxLayoutGap="5px"
+    >
+
+      <span>Don't have an account?</span>
+
+      <button
+        mat-button
+        color="primary"
+        type="button"
+        (click)="goToRegister()"
+      >
+        Register
+      </button>
+
+    </div>
+
+
+    <!-- Demo Credentials -->
+
+    <div class="demo-box">
+
+      <p class="demo-title">
+        Demo Login
+      </p>
+
+      <p>
+        Job Seeker:
+        <strong>user&#64;gmail.com</strong>
+      </p>
+
+      <p>
+        Recruiter:
+        <strong>recruiter&#64;gmail.com</strong>
+      </p>
+
+      <p>
+        Admin:
+        <strong>admin&#64;gmail.com</strong>
+      </p>
+
+      <p>
+        Password:
+        <strong>123456</strong>
+      </p>
+
+    </div>
+
+  </mat-card>
+
+</div>

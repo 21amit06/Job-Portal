@@ -1,0 +1,610 @@
+<div class="profile-page">
+
+  <!--  HEADER  -->
+
+  <div
+    class="profile-header"
+    fxLayout="row"
+    fxLayoutAlign="space-between center">
+
+    <div>
+
+      <h1>My Profile</h1>
+
+      <p>
+        Manage your personal information and professional profile
+      </p>
+
+    </div>
+
+
+    <div>
+
+      <!-- Edit Button -->
+
+      <button
+        mat-stroked-button
+        *ngIf="!isEditing"
+        (click)="toggleEdit()">
+
+        <mat-icon>
+          edit
+        </mat-icon>
+
+        Edit Profile
+
+      </button>
+
+
+      <!-- Save Button -->
+
+      <button
+        mat-flat-button
+        color="primary"
+        *ngIf="isEditing"
+        (click)="saveProfile()">
+
+        <mat-icon>
+          save
+        </mat-icon>
+
+        Save Changes
+
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <!--  PROFILE TOP  -->
+
+  <mat-card class="profile-card">
+
+    <div
+      fxLayout="row"
+      fxLayoutAlign="start center"
+      fxLayoutGap="24px">
+
+
+      <!-- Avatar -->
+
+      <div class="profile-avatar">
+
+        {{ profile.firstName.charAt(0) }}{{ profile.lastName.charAt(0) }}
+
+      </div>
+
+
+      <!-- Basic Information -->
+
+      <div class="basic-info">
+
+        <h2>
+
+          {{ profile.firstName }}
+          {{ profile.lastName }}
+
+        </h2>
+
+
+        <p class="headline">
+
+          {{ profile.headline || 'Add your professional headline' }}
+
+        </p>
+
+
+        <div
+          class="profile-meta"
+          fxLayout="row"
+          fxLayoutGap="20px">
+
+
+          <!-- Email -->
+
+          <span>
+
+            <mat-icon>
+              email
+            </mat-icon>
+
+            {{ profile.email }}
+
+          </span>
+
+
+          <!-- Location -->
+
+          <span *ngIf="profile.location">
+
+            <mat-icon>
+              location_on
+            </mat-icon>
+
+            {{ profile.location }}
+
+          </span>
+
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </mat-card>
+
+
+  <!--  PROFILE COMPLETION  -->
+
+  <mat-card class="completion-card">
+
+    <div
+      fxLayout="row"
+      fxLayoutAlign="space-between center">
+
+
+      <div>
+
+        <h3>
+          Profile Completion
+        </h3>
+
+        <p>
+          Complete your profile to increase your chances of getting hired.
+        </p>
+
+      </div>
+
+
+      <div class="completion-percent">
+
+        75%
+
+      </div>
+
+    </div>
+
+
+    <div class="progress-background">
+
+      <div class="progress-value"></div>
+
+    </div>
+
+
+    <p class="completion-message">
+
+      You're almost there! Add your experience and skills
+      to complete your profile.
+
+    </p>
+
+  </mat-card>
+
+
+  <!--  PERSONAL INFORMATION  -->
+
+  <mat-card class="section-card">
+
+
+    <div
+      class="section-header"
+      fxLayout="row"
+      fxLayoutAlign="space-between center">
+
+
+      <div>
+
+        <h2>
+          Personal Information
+        </h2>
+
+        <p>
+          Your basic personal information
+        </p>
+
+      </div>
+
+    </div>
+
+
+    <!-- First Name + Last Name -->
+
+    <div
+      class="form-grid"
+      fxLayout="row"
+      fxLayoutGap="20px">
+
+
+      <!-- First Name -->
+
+      <mat-form-field appearance="outline">
+
+        <mat-label>
+          First Name
+        </mat-label>
+
+        <input
+          matInput
+          [(ngModel)]="profile.firstName"
+          [disabled]="!isEditing">
+
+      </mat-form-field>
+
+
+      <!-- Last Name -->
+
+      <mat-form-field appearance="outline">
+
+        <mat-label>
+          Last Name
+        </mat-label>
+
+        <input
+          matInput
+          [(ngModel)]="profile.lastName"
+          [disabled]="!isEditing">
+
+      </mat-form-field>
+
+
+    </div>
+
+
+    <!-- Email + Phone -->
+
+    <div
+      class="form-grid"
+      fxLayout="row"
+      fxLayoutGap="20px">
+
+
+      <!-- Email -->
+
+      <mat-form-field appearance="outline">
+
+        <mat-label>
+          Email
+        </mat-label>
+
+        <input
+          matInput
+          type="email"
+          [(ngModel)]="profile.email"
+          [disabled]="!isEditing">
+
+      </mat-form-field>
+
+
+      <!-- Phone -->
+
+      <mat-form-field appearance="outline">
+
+        <mat-label>
+          Phone
+        </mat-label>
+
+        <input
+          matInput
+          [(ngModel)]="profile.phone"
+          [disabled]="!isEditing">
+
+      </mat-form-field>
+
+
+    </div>
+
+
+    <!-- Location -->
+
+    <mat-form-field
+      appearance="outline"
+      class="full-width">
+
+      <mat-label>
+        Location
+      </mat-label>
+
+      <input
+        matInput
+        [(ngModel)]="profile.location"
+        [disabled]="!isEditing">
+
+    </mat-form-field>
+
+
+  </mat-card>
+
+
+  <!--  PROFESSIONAL INFORMATION  -->
+
+  <mat-card class="section-card">
+
+
+    <div class="section-header">
+
+      <h2>
+        Professional Information
+      </h2>
+
+      <p>
+        Tell recruiters about your professional background
+      </p>
+
+    </div>
+
+
+    <!-- Professional Headline -->
+
+    <mat-form-field
+      appearance="outline"
+      class="full-width">
+
+      <mat-label>
+        Professional Headline
+      </mat-label>
+
+      <input
+        matInput
+        [(ngModel)]="profile.headline"
+        [disabled]="!isEditing">
+
+    </mat-form-field>
+
+
+    <!-- About Me -->
+
+    <mat-form-field
+      appearance="outline"
+      class="full-width">
+
+      <mat-label>
+        About Me
+      </mat-label>
+
+      <textarea
+        matInput
+        rows="4"
+        [(ngModel)]="profile.bio"
+        [disabled]="!isEditing">
+      </textarea>
+
+    </mat-form-field>
+
+
+    <!-- Experience + Education -->
+
+    <div
+      class="form-grid"
+      fxLayout="row"
+      fxLayoutGap="20px">
+
+
+      <!-- Experience -->
+
+      <mat-form-field appearance="outline">
+
+        <mat-label>
+          Experience
+        </mat-label>
+
+        <input
+          matInput
+          [(ngModel)]="profile.experience"
+          [disabled]="!isEditing">
+
+      </mat-form-field>
+
+
+      <!-- Education -->
+
+      <mat-form-field appearance="outline">
+
+        <mat-label>
+          Education
+        </mat-label>
+
+        <input
+          matInput
+          [(ngModel)]="profile.education"
+          [disabled]="!isEditing">
+
+      </mat-form-field>
+
+
+    </div>
+
+
+    <!-- University -->
+
+    <mat-form-field
+      appearance="outline"
+      class="full-width">
+
+      <mat-label>
+        University / College
+      </mat-label>
+
+      <input
+        matInput
+        [(ngModel)]="profile.university"
+        [disabled]="!isEditing">
+
+    </mat-form-field>
+
+
+  </mat-card>
+
+
+  <!--  SKILLS  -->
+
+  <mat-card class="section-card">
+
+
+    <div
+      class="section-header"
+      fxLayout="row"
+      fxLayoutAlign="space-between center">
+
+
+      <div>
+
+        <h2>
+          Skills
+        </h2>
+
+        <p>
+          Skills that you have experience with
+        </p>
+
+      </div>
+
+
+      <!-- Add Skill -->
+
+      <button
+        mat-stroked-button
+        *ngIf="isEditing"
+        (click)="addSkill()">
+
+        <mat-icon>
+          add
+        </mat-icon>
+
+        Add Skill
+
+      </button>
+
+
+    </div>
+
+
+    <!-- Skills -->
+
+    <div
+      class="skills-container"
+      fxLayout="row"
+      fxLayoutGap="10px">
+
+
+      <div
+        class="skill"
+        *ngFor="let skill of profile.skills">
+
+
+        <span>
+
+          {{ skill }}
+
+        </span>
+
+
+        <mat-icon
+          *ngIf="isEditing"
+          (click)="removeSkill(skill)">
+
+          close
+
+        </mat-icon>
+
+
+      </div>
+
+
+      <!-- No Skills -->
+
+      <p
+        *ngIf="profile.skills.length === 0">
+
+        No skills added yet.
+
+      </p>
+
+
+    </div>
+
+
+  </mat-card>
+
+
+  <!--  RESUME  -->
+
+  <mat-card class="section-card">
+
+
+    <div class="section-header">
+
+      <h2>
+        Resume
+      </h2>
+
+      <p>
+        Upload your latest resume
+      </p>
+
+    </div>
+
+
+    <div
+      class="resume-box"
+      fxLayout="row"
+      fxLayoutAlign="space-between center">
+
+
+      <!-- Resume Information -->
+
+      <div
+        fxLayout="row"
+        fxLayoutAlign="start center"
+        fxLayoutGap="14px">
+
+
+        <div class="resume-icon">
+
+          <mat-icon>
+            description
+          </mat-icon>
+
+        </div>
+
+
+        <div>
+
+          <h3>
+            Resume
+          </h3>
+
+          <p>
+            No resume uploaded
+          </p>
+
+        </div>
+
+
+      </div>
+
+
+      <!-- Download -->
+
+      <button
+        mat-stroked-button
+        disabled>
+
+        <mat-icon>
+          download
+        </mat-icon>
+
+        Download
+
+      </button>
+
+
+    </div>
+
+
+  </mat-card>
+
+
+</div>

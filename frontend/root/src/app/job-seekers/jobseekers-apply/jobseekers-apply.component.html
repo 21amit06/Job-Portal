@@ -1,0 +1,182 @@
+<div
+  class="apply-page"
+  fxLayout="column"
+  fxLayoutGap="24px">
+
+
+  <!-- ================= HEADER ================= -->
+
+  <div class="page-header">
+
+    <h1>
+      Apply for Job
+    </h1>
+
+    <p>
+      Submit your application for this position
+    </p>
+
+  </div>
+
+
+  <!-- ================= JOB DETAILS ================= -->
+
+  <mat-card
+    class="job-card"
+    *ngIf="job">
+
+    <div
+      fxLayout="row"
+      fxLayoutAlign="start center"
+      fxLayoutGap="16px">
+
+
+      <div class="job-icon">
+
+        <mat-icon>
+          work
+        </mat-icon>
+
+      </div>
+
+
+      <div>
+
+        <h2>
+          {{ job.title }}
+        </h2>
+
+        <p>
+          {{ job.company_name || 'Independent Recruiter' }}
+        </p>
+
+        <div
+          fxLayout="row"
+          fxLayoutGap="20px">
+
+          <span>
+
+            <mat-icon>
+              location_on
+            </mat-icon>
+
+            {{ job.location || 'Not specified' }}
+
+          </span>
+
+
+          <span>
+
+            <mat-icon>
+              schedule
+            </mat-icon>
+
+            {{ job.job_type }}
+
+          </span>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </mat-card>
+
+
+  <!-- ================= APPLICATION FORM ================= -->
+
+  <mat-card class="application-card">
+
+    <h2>
+      Application Details
+    </h2>
+
+
+    <form
+      #applicationForm="ngForm"
+      (ngSubmit)="submitApplication()">
+
+
+      <!-- ================= RESUME ================= -->
+
+      <mat-form-field
+        appearance="outline"
+        class="full-width">
+
+        <mat-label>
+          Resume URL
+        </mat-label>
+
+        <input
+          matInput
+          name="resume_url"
+          [(ngModel)]="application.resume_url"
+          placeholder="Enter your resume URL"
+          required>
+
+      </mat-form-field>
+
+
+      <!-- ================= COVER LETTER ================= -->
+
+      <mat-form-field
+        appearance="outline"
+        class="full-width">
+
+        <mat-label>
+          Cover Letter
+        </mat-label>
+
+        <textarea
+          matInput
+          name="cover_letter"
+          [(ngModel)]="application.cover_letter"
+          rows="8"
+          placeholder="Write your cover letter"
+          required>
+        </textarea>
+
+      </mat-form-field>
+
+
+      <!-- ================= BUTTONS ================= -->
+
+      <div
+        class="form-actions"
+        fxLayout="row"
+        fxLayoutAlign="end center"
+        fxLayoutGap="12px">
+
+
+        <button
+          mat-stroked-button
+          type="button"
+          (click)="cancel()">
+
+          Cancel
+
+        </button>
+
+
+        <button
+          mat-raised-button
+          color="primary"
+          type="submit"
+          [disabled]="submitting || applicationForm.invalid">
+
+          <mat-icon>
+            send
+          </mat-icon>
+
+          {{ submitting ? 'Submitting...' : 'Submit Application' }}
+
+        </button>
+
+      </div>
+
+    </form>
+
+  </mat-card>
+
+</div>

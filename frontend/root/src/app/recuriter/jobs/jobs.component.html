@@ -1,0 +1,402 @@
+<div class="jobs-page">
+
+  <!-- Header -->
+  <div
+    class="page-header"
+    fxLayout="row"
+    fxLayoutAlign="space-between center"
+  >
+
+    <div>
+      <h1>My Jobs</h1>
+      <p>Manage your job postings and applicants</p>
+    </div>
+
+    <button
+      mat-raised-button
+      color="primary"
+      (click)="postJob()"
+    >
+      <mat-icon>add</mat-icon>
+      Post a Job
+    </button>
+
+  </div>
+
+
+  <!-- Search and Filter -->
+  <mat-card class="filter-card">
+
+    <div
+      fxLayout="row"
+      fxLayoutGap="16px"
+      fxLayoutAlign="start center"
+    >
+
+      <!-- Search -->
+      <mat-form-field
+        appearance="outline"
+        class="search-field"
+      >
+
+        <!-- <mat-label>Search jobs</mat-label> -->
+        <div class="searchinput">
+         <mat-icon matPrefix>
+          search
+        </mat-icon>
+
+        <input
+          matInput
+          [(ngModel)]="searchText"
+          placeholder="Search by job title or location"
+        >
+        </div>
+       
+
+      </mat-form-field>
+
+
+      <!-- Status -->
+      <mat-form-field
+        appearance="outline"
+        class="filter-field"
+      >
+
+        <mat-label>Status</mat-label>
+
+        <mat-select
+          [(ngModel)]="selectedStatus"
+        >
+
+          <mat-option value="All">
+            All
+          </mat-option>
+
+          <mat-option value="ACTIVE">
+            Active
+          </mat-option>
+
+          <mat-option value="CLOSED">
+            Closed
+          </mat-option>
+
+          <mat-option value="PENDING">
+            Pending
+          </mat-option>
+
+        </mat-select>
+
+      </mat-form-field>
+
+    </div>
+
+  </mat-card>
+
+
+  <!-- Job Count -->
+  <div class="job-count">
+    Total job posted:{{ filteredJobs.length }} 
+  </div>
+
+
+  <!-- Jobs -->
+  <div
+    fxLayout="column"
+    fxLayoutGap="16px"
+  >
+
+    <mat-card
+      class="job-card"
+      *ngFor="let job of filteredJobs"
+    >
+
+      <!-- Top section -->
+      <div
+        fxLayout="row"
+        fxLayoutAlign="space-between start"
+      >
+
+        <div
+          fxLayout="row"
+          fxLayoutGap="16px"
+        >
+
+          <!-- Job Icon -->
+          <div class="job-icon">
+            <mat-icon>work</mat-icon>
+          </div>
+
+
+          <!-- Job Information -->
+          <div>
+
+            <div
+              fxLayout="row"
+              fxLayoutGap="10px"
+              fxLayoutAlign="start center"
+            >
+
+              <h2>
+                {{ job.title }}
+              </h2>
+
+              <span
+                class="status-badge"
+                [class.active]="job.status === 'ACTIVE'"
+                [class.closed]="job.status === 'CLOSED'"
+                [class.pending]="job.status === 'PENDING'"
+              >
+                {{ job.status }}
+              </span>
+
+            </div>
+
+
+            <!-- Company -->
+            <p class="company">
+              {{ job.company_name }}
+            </p>
+
+
+            <!-- Location -->
+            <p class="location">
+
+              <mat-icon>
+                location_on
+              </mat-icon>
+
+              {{ job.location }}
+
+            </p>
+
+
+            <!-- Job Type + Salary -->
+            <p class="job-meta">
+
+              {{ job.job_type }}
+
+              &nbsp; • &nbsp;
+
+              ₹{{ job.salary_min / 100000 | number:'1.0-2' }}
+              -
+              ₹{{ job.salary_max / 100000 | number:'1.0-2' }}
+              LPA
+
+            </p>
+
+          </div>
+
+        </div>
+
+
+        <!-- More -->
+        <button
+          mat-icon-button
+          [matMenuTriggerFor]="menu"
+        >
+
+          <mat-icon>
+            more_vert
+          </mat-icon>
+
+        </button>
+
+
+        <mat-menu #menu="matMenu">
+
+          <!-- Edit -->
+          <button
+            mat-menu-item
+            (click)="editJob(job)"
+          >
+
+            <mat-icon>
+              edit
+            </mat-icon>
+
+            <span>
+              Edit Job
+            </span>
+
+          </button>
+
+
+          <!-- Toggle Status -->
+          <button
+            mat-menu-item
+            (click)="toggleJobStatus(job)"
+          >
+
+            <mat-icon>
+              {{ job.status === 'ACTIVE' ? 'close' : 'check' }}
+            </mat-icon>
+
+            <span>
+              {{ job.status === 'ACTIVE'
+                ? 'Close Job'
+                : 'Activate Job'
+              }}
+            </span>
+
+          </button>
+
+
+          <!-- Delete -->
+          <button
+            mat-menu-item
+            (click)="deleteJob(job)"
+          >
+
+            <mat-icon>
+              delete
+            </mat-icon>
+
+            <span>
+              Delete
+            </span>
+
+          </button>
+
+        </mat-menu>
+
+      </div>
+
+
+      <!-- Bottom section -->
+      <div
+        class="job-footer"
+        fxLayout="row"
+        fxLayoutAlign="space-between center"
+      >
+
+        <!-- Statistics -->
+        <div class="stat-position"
+          fxLayout="row"
+          fxLayoutGap="32px"
+        >
+
+          <!-- Vacancies -->
+          <div class="stat">
+
+            <mat-icon>
+              work
+            </mat-icon>
+
+            <div>
+
+              <strong>
+                {{ job.vacancies }}
+              </strong>
+
+              <span>
+                Vacancies
+              </span>
+
+            </div>
+
+          </div>
+
+
+          <!-- Experience -->
+          <div class="stat">
+
+            <mat-icon>
+              badge
+            </mat-icon>
+
+            <div>
+
+              <strong>
+                {{ job.experience_required || 'Not specified' }}
+              </strong>
+
+              <span>
+                Experience
+              </span>
+
+            </div>
+
+          </div>
+
+          <div  class="stat">
+            <mat-icon>
+            calendar_today
+          </mat-icon>
+            <div class="posted">
+              <span>
+                Posted
+              </span>
+            
+            {{ job.created_at | date:'mediumDate' }}
+           
+          </div>
+
+          </div>
+          <!-- Posted -->
+          
+
+        </div>
+
+
+        <!-- Actions -->
+        <div
+          fxLayout="row"
+          fxLayoutGap="10px"
+        >
+
+          <!-- Edit -->
+          <button
+            mat-stroked-button
+            (click)="editJob(job)"
+          >
+
+            <mat-icon>
+              edit
+            </mat-icon>
+
+            Edit
+
+          </button>
+
+
+          <!-- Applicants -->
+          <button
+            mat-raised-button
+            color="primary"
+            (click)="viewApplicants(job)"
+          >
+
+            View Applicants
+
+          </button>
+
+        </div>
+
+      </div>
+
+    </mat-card>
+
+
+    <!-- No jobs -->
+    <mat-card
+      class="empty-card"
+      *ngIf="filteredJobs.length === 0"
+    >
+
+      <mat-icon>
+        work_off
+      </mat-icon>
+
+      <h2>
+        No jobs found
+      </h2>
+
+      <p>
+        Try changing your search or filter.
+      </p>
+
+    </mat-card>
+
+  </div>
+
+</div>

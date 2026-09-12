@@ -1,0 +1,250 @@
+.interviews-page {
+  width: 100%;
+}
+
+
+/* Header */
+
+.page-header {
+  margin-bottom: 30px;
+}
+
+.page-header h1 {
+  margin: 0;
+  font-size: 28px;
+  font-weight: 700;
+  color: #202124;
+}
+
+.page-header p {
+  margin: 6px 0 0;
+  font-size: 14px;
+  color: #737373;
+}
+
+
+/* Section */
+
+.section-title {
+  margin-bottom: 16px;
+}
+
+.section-title h2 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 700;
+  color: #202124;
+}
+
+
+/* Interview Card */
+
+.interview-card {
+  width: 1260px;
+  height:150px;
+  padding: 24px;
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
+  box-shadow: none;
+  margin-bottom: 2px;
+  overflow-x: hidden !important;
+}
+
+.interview-meta{
+  margin-top: 10px;
+ 
+}
+/* Logo */
+
+.company-logo {
+ 
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: #7a91df;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+ align-content: start;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+
+/* Logo colors */
+
+.blue {
+  background: #e8edff;
+  color: #4056d6;
+}
+
+.pink {
+  background: #ffe8f0;
+  color: #d94675;
+}
+
+.dark-blue {
+  background: #e7eaff;
+  color: #3949ab;
+}
+
+.green {
+  background: #e5f8ed;
+  color: #159957;
+}
+
+
+/* Job */
+
+.interview-info h3 {
+  margin: 0 0 5px;
+  font-size: 17px;
+  font-weight: 700;
+  color: #202124;
+}
+
+.company-name {
+  margin: 0;
+  font-size: 14px;
+  color: #737373;
+}
+
+
+/* Status */
+
+.status-badge {
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.status-upcoming {
+  background: #e9e7ff;
+  color: #5146c9;
+}
+
+.status-completed {
+  background: #e6f7ed;
+  color: #198754;
+}
+
+.status-cancelled {
+  background: #fde8e8;
+  color: #dc3545;
+}
+
+
+
+
+
+.empty-card{
+  width: auto;
+  
+
+  mat-icon{
+    padding-top: 20px;
+    padding-left: 15px;
+
+    
+  }
+
+  h3{
+
+  }
+  p{
+
+  }
+}
+
+
+
+
+
+
+
+
+/* Divider */
+
+.divider {
+  height: 1px;
+  background: #eeeeee;
+  margin: 22px 0;
+}
+
+
+/* Details */
+
+.interview-details {
+  flex-wrap: wrap;
+}
+
+.detail-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.detail-item mat-icon {
+  color: #6666d9;
+  font-size: 20px;
+}
+
+.detail-label {
+  display: block;
+  font-size: 11px;
+  color: #888;
+  margin-bottom: 3px;
+}
+
+.detail-item strong {
+  display: block;
+  font-size: 13px;
+  color: #333;
+  font-weight: 600;
+}
+
+
+/* Actions */
+
+.card-actions {
+  margin-top: 22px;
+}
+
+
+/* Tips */
+
+.tips-card {
+  margin-top: 24px;
+  padding: 20px;
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
+  box-shadow: none;
+  background: #fafaff;
+}
+
+.tips-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: #e9e7ff;
+  color: #5146c9;
+}
+
+.tips-card h3 {
+  margin: 0 0 5px;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.tips-card p {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.5;
+  color: #737373;
+}

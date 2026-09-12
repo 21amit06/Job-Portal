@@ -1,0 +1,769 @@
+/* =========================================================
+   DASHBOARD PAGE
+   ========================================================= */
+
+.dashboard-page {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+.dashboard-header {
+  width: 100%;
+  min-width: 0;
+  margin-bottom: 28px;
+  box-sizing: border-box;
+}
+
+.dashboard-header h1 {
+  margin: 0;
+  font-size: 28px;
+  font-weight: 700;
+  color: #202124;
+}
+
+.dashboard-header p {
+  margin: 6px 0 0;
+  font-size: 14px;
+  color: #737373;
+}
+
+
+/* =========================================================
+   STATS
+   ========================================================= */
+
+.stats-container {
+  width: 100%;
+  min-width: 0;
+  margin-bottom: 20px;
+  box-sizing: border-box;
+  display: flex;
+  gap: 16px;
+}
+
+.stat-card {
+  flex: 1 1 0;
+  min-width: 0;
+  padding: 20px;
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
+  box-shadow: none;
+  box-sizing: border-box;
+}
+
+.stat-title {
+  margin: 0 0 6px;
+  font-size: 13px;
+  color: #737373;
+}
+
+.stat-card h2 {
+  margin: 0;
+  font-size: 26px;
+  font-weight: 700;
+  color: #202124;
+}
+
+
+/* =========================================================
+   STAT ICON
+   ========================================================= */
+
+.stat-icon {
+  width: 46px;
+  height: 46px;
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 10px;
+}
+
+.stat-icon mat-icon {
+  font-size: 22px;
+}
+
+
+/* Stat icon backgrounds */
+
+.stat-icon.jobs {
+  background: #e9e7ff;
+  color: #5146c9;
+}
+
+.stat-icon.applicants {
+  background: #e8f0ff;
+  color: #3867d6;
+}
+
+.stat-icon.interviews {
+  background: #fff1df;
+  color: #df8b20;
+}
+
+.stat-icon.shortlisted {
+  background: #e6f7ed;
+  color: #198754;
+}
+
+
+/* =========================================================
+   MAIN GRID
+   ========================================================= */
+
+.main-grid {
+  width: 100%;
+  min-width: 0;
+  margin-bottom: 20px;
+
+  display: flex;
+  gap: 20px;
+
+  box-sizing: border-box;
+}
+
+
+/*
+  Recent Jobs card
+  65% width
+*/
+
+.main-grid > .content-card:first-child {
+  flex: 0 1 65%;
+  min-width: 0;
+}
+
+
+/*
+  Quick Actions card
+  Remaining width
+*/
+
+.main-grid > .content-card:last-child {
+  flex: 1 1 35%;
+  min-width: 0;
+}
+
+
+/* =========================================================
+   CONTENT CARD
+   ========================================================= */
+
+.content-card {
+  width: 100%;
+  min-width: 0;
+
+  padding: 22px;
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
+  box-shadow: none;
+
+  box-sizing: border-box;
+}
+
+
+/* =========================================================
+   CARD HEADER
+   ========================================================= */
+
+.card-header {
+  width: 100%;
+  min-width: 0;
+  margin-bottom: 18px;
+}
+
+.card-header h2 {
+  margin: 0 0 5px;
+  font-size: 17px;
+  font-weight: 700;
+  color: #202124;
+}
+
+.card-header p {
+  margin: 0;
+  font-size: 12px;
+  color: #888;
+}
+
+
+/* =========================================================
+   JOB LIST
+   ========================================================= */
+
+.jobs-list {
+  width: 100%;
+  min-width: 0;
+}
+
+
+/* Job row */
+
+.job-row {
+  width: 100%;
+  min-width: 0;
+
+  padding: 17px 0;
+
+  border-top: 1px solid #eeeeee;
+
+  display: flex;
+  align-items: center;
+  gap: 15px;
+
+  box-sizing: border-box;
+}
+
+.job-row:first-child {
+  border-top: none;
+}
+
+
+/*
+  First section of job row:
+  icon + job information
+*/
+
+.job-row > div:first-child {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+
+/* =========================================================
+   JOB ICON
+   ========================================================= */
+
+.job-icon {
+  width: 42px;
+  height: 42px;
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 9px;
+
+  background: #f0efff;
+  color: #5146c9;
+}
+
+.job-icon mat-icon {
+  font-size: 20px;
+}
+
+
+/* =========================================================
+   JOB TITLE
+   ========================================================= */
+
+.job-row h3 {
+  margin: 0 0 6px;
+
+  font-size: 14px;
+  font-weight: 600;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+
+/* =========================================================
+   JOB META
+   ========================================================= */
+
+.job-meta {
+  min-width: 0;
+}
+
+.job-meta span {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+
+  font-size: 11px;
+  color: #888;
+
+  min-width: 0;
+}
+
+.job-meta mat-icon {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+
+  font-size: 15px;
+}
+
+
+/* =========================================================
+   APPLICANT COUNT
+   ========================================================= */
+
+.applicant-count {
+  display: flex;
+  flex-direction: column;
+
+  min-width: 70px;
+  flex-shrink: 0;
+}
+
+.applicant-count strong {
+  font-size: 15px;
+  color: #333;
+}
+
+.applicant-count span {
+  font-size: 10px;
+  color: #999;
+}
+
+
+/* =========================================================
+   STATUS
+   ========================================================= */
+
+.status-badge {
+  padding: 6px 11px;
+
+  border-radius: 20px;
+
+  font-size: 11px;
+  font-weight: 600;
+
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.status-active {
+  background: #e6f7ed;
+  color: #198754;
+}
+
+.status-closed {
+  background: #eeeeee;
+  color: #777;
+}
+
+.status-new {
+  background: #e8f0ff;
+  color: #3867d6;
+}
+
+.status-shortlisted {
+  background: #e9e7ff;
+  color: #5146c9;
+}
+
+.status-interview {
+  background: #fff1df;
+  color: #df8b20;
+}
+
+
+/* =========================================================
+   QUICK ACTIONS
+   ========================================================= */
+
+.quick-actions {
+  width: 100%;
+  margin-top: 22px;
+}
+
+.quick-action {
+  width: 100%;
+  height: 48px;
+
+  justify-content: flex-start;
+  text-align: left;
+
+  box-sizing: border-box;
+}
+
+.quick-action mat-icon {
+  margin-right: 8px;
+}
+
+
+/* =========================================================
+   APPLICANTS
+   ========================================================= */
+
+.applicants-card {
+  width: 100%;
+  min-width: 0;
+  margin-bottom: 20px;
+}
+
+.applicants-list {
+  width: 100%;
+  min-width: 0;
+}
+
+
+/* Applicant row */
+
+.applicant-row {
+  width: 100%;
+  min-width: 0;
+
+  padding: 16px 0;
+
+  border-top: 1px solid #eeeeee;
+
+  display: flex;
+  align-items: center;
+  gap: 20px;
+
+  box-sizing: border-box;
+}
+
+.applicant-row:first-child {
+  border-top: none;
+}
+
+
+/*
+  Candidate section
+*/
+
+.applicant-row > div:first-child {
+  flex: 1 1 auto;
+  min-width: 180px;
+}
+
+
+/* =========================================================
+   AVATAR
+   ========================================================= */
+
+.candidate-avatar {
+  width: 42px;
+  height: 42px;
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background: #e9e7ff;
+  color: #5146c9;
+
+  font-size: 13px;
+  font-weight: 700;
+}
+
+
+/* =========================================================
+   CANDIDATE
+   ========================================================= */
+
+.applicant-row h3 {
+  margin: 0 0 4px;
+
+  font-size: 14px;
+  font-weight: 600;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.applicant-row p {
+  margin: 0;
+
+  font-size: 12px;
+  color: #888;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+
+/* =========================================================
+   EXPERIENCE / APPLIED
+   ========================================================= */
+
+.experience,
+.applied {
+  display: flex;
+  flex-direction: column;
+
+  flex: 0 1 180px;
+  min-width: 100px;
+}
+
+.experience span,
+.applied span {
+  margin-bottom: 4px;
+
+  font-size: 10px;
+  color: #999;
+}
+
+.experience strong,
+.applied strong {
+  font-size: 12px;
+  font-weight: 600;
+  color: #444;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+
+/* =========================================================
+   EMPTY STATE
+   ========================================================= */
+
+.empty-state {
+  padding: 30px 0;
+  text-align: center;
+
+  font-size: 13px;
+  color: #888;
+}
+
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 1100px) {
+
+  .dashboard-header h1 {
+    font-size: 24px;
+  }
+
+  .content-card {
+    padding: 18px;
+  }
+
+  /*
+    Make Recent Jobs and Quick Actions
+    stack vertically.
+  */
+
+  .main-grid {
+    flex-direction: column;
+  }
+
+  .main-grid > .content-card:first-child,
+  .main-grid > .content-card:last-child {
+    width: 100%;
+    flex: none;
+  }
+
+
+  /*
+    Stats become 2 x 2
+  */
+
+  .stats-container {
+    flex-wrap: wrap;
+  }
+
+  .stat-card {
+    flex: 1 1 calc(50% - 8px);
+  }
+}
+
+
+/* =========================================================
+   SMALL TABLET / MOBILE
+   ========================================================= */
+
+@media (max-width: 768px) {
+
+  .dashboard-header {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .dashboard-header button {
+    width: auto;
+  }
+
+
+  /* -------------------------
+     Stats
+     ------------------------- */
+
+  .stat-card {
+    flex: 1 1 100%;
+  }
+
+
+  /* -------------------------
+     Job rows
+     ------------------------- */
+
+  .job-row {
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+
+  /*
+    Job information takes full width
+  */
+
+  .job-row > div:first-child {
+    flex: 1 1 100%;
+  }
+
+
+  /*
+    Keep the remaining information
+    on the next line
+  */
+
+  .applicant-count {
+    margin-left: 56px;
+  }
+
+
+  /* -------------------------
+     Applicants
+     ------------------------- */
+
+  .applicant-row {
+    flex-wrap: wrap;
+    gap: 14px;
+  }
+
+
+  /*
+    Candidate information
+    takes full width
+  */
+
+  .applicant-row > div:first-child {
+    flex: 1 1 100%;
+    min-width: 0;
+  }
+
+
+  .experience,
+  .applied {
+    flex: 1 1 calc(50% - 7px);
+    min-width: 0;
+  }
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 500px) {
+
+  .dashboard-page {
+    width: 100%;
+  }
+
+
+  .dashboard-header h1 {
+    font-size: 22px;
+  }
+
+  .dashboard-header p {
+    font-size: 13px;
+  }
+
+
+  .content-card {
+    padding: 16px;
+  }
+
+
+  /* -------------------------
+     Job rows
+     ------------------------- */
+
+  .job-row {
+    gap: 12px;
+  }
+
+  .job-meta {
+    flex-wrap: wrap;
+  }
+
+  .job-meta span {
+    font-size: 10px;
+  }
+
+
+  .applicant-count {
+    margin-left: 0;
+  }
+
+
+  /* -------------------------
+     Applicant rows
+     ------------------------- */
+
+  .experience,
+  .applied {
+    flex: 1 1 100%;
+  }
+
+
+  .status-badge {
+    font-size: 10px;
+    padding: 5px 9px;
+  }
+
+
+  /* -------------------------
+     Quick actions
+     ------------------------- */
+
+  .quick-action {
+    height: 46px;
+  }
+}
+
+
+/* =========================================================
+   VERY SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 360px) {
+
+  .content-card {
+    padding: 12px;
+  }
+
+  .dashboard-header h1 {
+    font-size: 20px;
+  }
+
+  .stat-card {
+    padding: 16px;
+  }
+
+  .job-row {
+    padding: 14px 0;
+  }
+
+  .applicant-row {
+    padding: 14px 0;
+  }
+}

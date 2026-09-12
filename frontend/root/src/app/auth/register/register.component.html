@@ -1,0 +1,375 @@
+<div
+  class="register-page"
+  fxLayout="row"
+  fxLayoutAlign="center center"
+>
+
+  <mat-card class="register-card">
+
+    <!-- Header -->
+
+    <div
+      class="register-header"
+      fxLayout="column"
+      fxLayoutAlign="center center"
+      fxLayoutGap="6px"
+    >
+
+      <div class="logo">
+
+        <mat-icon>
+          work
+        </mat-icon>
+
+      </div>
+
+      <h1>JobPortal</h1>
+
+      <p>Create your account</p>
+
+    </div>
+
+
+    <!-- Form -->
+
+    <form
+      fxLayout="column"
+      fxLayoutGap="15px"
+      (ngSubmit)="register()"
+    >
+
+
+      <!-- First Name -->
+
+      <mat-form-field
+        appearance="outline"
+        class="full-width"
+      >
+
+        <mat-label>First Name</mat-label>
+
+        <mat-icon matPrefix>
+          person
+        </mat-icon>
+
+        <input
+          matInput
+          type="text"
+          name="first_name"
+          [(ngModel)]="registerData.first_name"
+          placeholder="Enter your first name"
+          required
+        >
+
+      </mat-form-field>
+
+
+      <!-- Last Name -->
+
+      <mat-form-field
+        appearance="outline"
+        class="full-width"
+      >
+
+        <mat-label>Last Name</mat-label>
+
+        <mat-icon matPrefix>
+          person
+        </mat-icon>
+
+        <input
+          matInput
+          type="text"
+          name="last_name"
+          [(ngModel)]="registerData.last_name"
+          placeholder="Enter your last name"
+        >
+
+      </mat-form-field>
+
+
+      <!-- Email -->
+
+      <mat-form-field
+        appearance="outline"
+        class="full-width"
+      >
+
+        <mat-label>Email</mat-label>
+
+        <mat-icon matPrefix>
+          email
+        </mat-icon>
+
+        <input
+          matInput
+          type="email"
+          name="email"
+          [(ngModel)]="registerData.email"
+          placeholder="Enter your email"
+          required
+        >
+
+      </mat-form-field>
+
+
+      <!-- Phone -->
+
+      <mat-form-field
+        appearance="outline"
+        class="full-width"
+      >
+
+        <mat-label>Phone</mat-label>
+
+        <mat-icon matPrefix>
+          phone
+        </mat-icon>
+
+        <input
+          matInput
+          type="tel"
+          name="phone"
+          [(ngModel)]="registerData.phone"
+          placeholder="Enter your phone number"
+        >
+
+      </mat-form-field>
+
+
+      <!-- Password -->
+
+      <mat-form-field
+        appearance="outline"
+        class="full-width"
+      >
+
+        <mat-label>Password</mat-label>
+
+        <mat-icon matPrefix>
+          lock
+        </mat-icon>
+
+        <input
+          matInput
+          [type]="hidePassword ? 'password' : 'text'"
+          name="password"
+          [(ngModel)]="registerData.password"
+          placeholder="Enter password"
+          required
+        >
+
+        <button
+          mat-icon-button
+          matSuffix
+          type="button"
+          (click)="hidePassword = !hidePassword"
+        >
+
+          <mat-icon>
+            {{ hidePassword ? 'visibility' : 'visibility_off' }}
+          </mat-icon>
+
+        </button>
+
+      </mat-form-field>
+
+
+      <!-- Confirm Password -->
+
+      <mat-form-field
+        appearance="outline"
+        class="full-width"
+      >
+
+        <mat-label>Confirm Password</mat-label>
+
+        <mat-icon matPrefix>
+          lock
+        </mat-icon>
+
+        <input
+          matInput
+          [type]="hideConfirmPassword ? 'password' : 'text'"
+          name="confirmPassword"
+          [(ngModel)]="registerData.confirmPassword"
+          placeholder="Confirm password"
+          required
+        >
+
+        <button
+          mat-icon-button
+          matSuffix
+          type="button"
+          (click)="hideConfirmPassword = !hideConfirmPassword"
+        >
+
+          <mat-icon>
+            {{
+              hideConfirmPassword
+                ? 'visibility'
+                : 'visibility_off'
+            }}
+          </mat-icon>
+
+        </button>
+
+      </mat-form-field>
+
+
+      <!-- Role Selection -->
+
+      <div class="role-section">
+
+        <p class="role-title">
+          Select your role
+        </p>
+
+
+        <div
+          fxLayout="row"
+          fxLayoutGap="12px"
+        >
+
+
+          <!-- Job Seeker -->
+
+          <div
+            class="role-card"
+            fxFlex
+            [class.selected]="
+              registerData.userType === 'JOB_SEEKER'
+            "
+            (click)="selectRole('JOB_SEEKER')"
+          >
+
+            <mat-icon>
+              person_search
+            </mat-icon>
+
+            <span>
+              Job Seeker
+            </span>
+
+            <small>
+              Find your dream job
+            </small>
+
+          </div>
+
+
+          <!-- Recruiter -->
+
+          <div
+            class="role-card"
+            fxFlex
+            [class.selected]="
+              registerData.userType === 'RECRUITER'
+            "
+            (click)="selectRole('RECRUITER')"
+          >
+
+            <mat-icon>
+              business_center
+            </mat-icon>
+
+            <span>
+              Recruiter
+            </span>
+
+            <small>
+              Hire talented people
+            </small>
+
+          </div>
+
+
+          <!-- Admin -->
+
+          <div
+            class="role-card"
+            fxFlex
+            [class.selected]="
+              registerData.userType === 'ADMIN'
+            "
+            (click)="selectRole('ADMIN')"
+          >
+
+            <mat-icon>
+              admin_panel_settings
+            </mat-icon>
+
+            <span>
+              Admin
+            </span>
+
+            <small>
+              Manage platform
+            </small>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- Selected Role -->
+
+      <div
+        class="selected-role"
+        *ngIf="registerData.userType"
+      >
+
+        Selected role:
+
+        <strong>
+          {{ registerData.userType }}
+        </strong>
+
+      </div>
+
+
+      <!-- Register Button -->
+
+      <button
+        mat-raised-button
+        color="primary"
+        type="submit"
+        class="register-button"
+      >
+
+        Create Account
+
+      </button>
+
+    </form>
+
+
+    <!-- Login -->
+
+    <div
+      class="login-section"
+      fxLayout="row"
+      fxLayoutAlign="center center"
+      fxLayoutGap="5px"
+    >
+
+      <span>
+        Already have an account?
+      </span>
+
+      <button
+        mat-button
+        color="primary"
+        type="button"
+        (click)="goToLogin()"
+      >
+        Login
+      </button>
+
+    </div>
+
+  </mat-card>
+
+</div>

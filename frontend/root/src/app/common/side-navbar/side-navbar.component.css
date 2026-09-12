@@ -1,0 +1,55 @@
+.sidenav {
+  width: 100%;
+  min-width: 230px;
+  height: 100%;
+  background: white;
+  border-right: 1px solid #e5e7eb;
+  box-sizing: border-box;
+  padding: 20px 12px;
+}
+
+
+.sidenav a {
+  height: 46px;
+  padding: 0 14px;
+
+  box-sizing: border-box;
+
+  text-decoration: none;
+
+  color: #5f6368;
+
+  border-radius: 8px;
+
+  cursor: pointer;
+
+  font-size: 14px;
+  font-weight: 500;
+}
+
+
+.sidenav a mat-icon {
+  font-size: 21px;
+  width: 21px;
+  height: 21px;
+}
+
+
+.sidenav a:hover {
+  background: #f4f3ff;
+  color: #4f46e5;
+}
+
+
+.sidenav a.active {
+  background: #eeeeff;
+  color: #4f46e5;
+  font-weight: 600;
+}
+
+
+.logout-section {
+  margin-top: auto;
+  
+  box-sizing: border-box;
+}

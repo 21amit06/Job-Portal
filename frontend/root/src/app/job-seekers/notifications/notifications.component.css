@@ -1,0 +1,238 @@
+.notifications-page {
+  width: 100%;
+}
+
+
+/* ================= HEADER ================= */
+
+.page-header {
+  margin-bottom: 24px;
+}
+
+.page-header h1 {
+  margin: 0;
+  font-size: 28px;
+  font-weight: 700;
+  color: #202124;
+}
+
+.page-header p {
+  margin: 6px 0 0;
+  font-size: 14px;
+  color: #737373;
+}
+
+
+/* ================= SUMMARY ================= */
+
+.summary-card {
+  padding: 20px;
+  margin-bottom: 20px;
+
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
+
+  box-shadow: none;
+}
+
+.summary-icon {
+  width: 44px;
+  height: 44px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 10px;
+
+  background: #e9e7ff;
+  color: #5146c9;
+}
+
+.summary-icon mat-icon {
+  font-size: 22px;
+}
+
+.summary-card h3 {
+  margin: 0 0 4px;
+
+  font-size: 15px;
+  font-weight: 700;
+  color: #202124;
+}
+
+.summary-card p {
+  margin: 0;
+
+  font-size: 13px;
+  color: #737373;
+}
+
+
+/* ================= LIST ================= */
+
+.notification-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+
+/* ================= NOTIFICATION CARD ================= */
+
+.notification-card {
+  padding: 20px;
+
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
+
+  box-shadow: none;
+
+  transition: 0.2s;
+}
+
+.notification-card:hover {
+  border-color: #d5d2f5;
+}
+
+.notification-card.unread {
+  background: #fafaff;
+  border-left: 3px solid #5146c9;
+}
+
+
+/* ================= ICON ================= */
+
+.notification-icon {
+  width: 46px;
+  height: 46px;
+
+  min-width: 46px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+}
+
+.notification-icon mat-icon {
+  font-size: 21px;
+}
+
+
+/* Icon colors */
+
+.icon-interview {
+  background: #eeeaff;
+  color: #5146c9;
+}
+
+.icon-application {
+  background: #e8f0ff;
+  color: #3867d6;
+}
+
+.icon-job {
+  background: #fff1df;
+  color: #e38b20;
+}
+
+.icon-success {
+  background: #e6f7ed;
+  color: #198754;
+}
+
+.icon-profile {
+  background: #ffeaf1;
+  color: #d94675;
+}
+
+
+/* ================= CONTENT ================= */
+
+.notification-content {
+  min-width: 0;
+}
+
+.notification-content h3 {
+  margin: 0 0 6px;
+
+  font-size: 15px;
+  font-weight: 700;
+
+  color: #202124;
+}
+
+.notification-content p {
+  margin: 0;
+
+  font-size: 13px;
+  line-height: 1.5;
+
+  color: #737373;
+}
+
+
+/* ================= TIME ================= */
+
+.notification-time {
+  margin-left: 20px;
+
+  white-space: nowrap;
+
+  font-size: 12px;
+  color: #999;
+}
+
+
+/* ================= ACTIONS ================= */
+
+.notification-actions {
+  margin-top: 10px;
+}
+
+.notification-actions button {
+  min-width: auto;
+  padding: 0 8px;
+
+  font-size: 12px;
+}
+
+
+/* ================= EMPTY ================= */
+
+.empty-card {
+  margin-top: 20px;
+
+  padding: 60px 20px;
+
+  text-align: center;
+
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
+
+  box-shadow: none;
+}
+
+.empty-card mat-icon {
+  width: 50px;
+  height: 50px;
+
+  font-size: 50px;
+
+  color: #b5b5b5;
+}
+
+.empty-card h2 {
+  margin: 15px 0 6px;
+
+  font-size: 18px;
+}
+
+.empty-card p {
+  margin: 0;
+
+  font-size: 13px;
+  color: #888;
+}

@@ -1,0 +1,26 @@
+<div fxLayout="column" class="app-container">
+
+  <!-- Navbar -->
+  <app-navbar></app-navbar>
+
+  <!-- Sidebar + Page -->
+  <div
+    fxLayout="row"
+    fxFlex
+    class="app-body">
+
+    <!-- Sidebar -->
+    <app-side-navbar></app-side-navbar>
+
+    <!-- Page Content -->
+    <div
+      fxFlex
+      class="page-content">
+
+      <router-outlet></router-outlet>
+
+    </div>
+
+  </div>
+
+</div>

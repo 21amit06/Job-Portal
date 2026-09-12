@@ -1,0 +1,435 @@
+<div class="admin-dashboard">
+
+  <!-- PAGE HEADER -->
+ 
+  <div class="page-header">
+
+    <h1>
+      Admin Dashboard
+    </h1>
+
+    <p>
+      Manage and monitor your JobPortal platform
+    </p>
+
+  </div>
+
+ 
+  <!-- STATISTICS -->
+ 
+  <div
+    fxLayout="row"
+    fxLayoutGap="20px"
+    fxLayout.lt-md="column"
+  >
+
+    <mat-card
+      class="stat-card"
+      fxFlex
+      *ngFor="let stat of stats"
+    >
+
+      <div
+        fxLayout="row"
+        fxLayoutAlign="space-between center"
+      >
+
+        <div>
+
+          <p class="stat-title">
+            {{ stat.title }}
+          </p>
+
+          <h2>
+            {{ stat.value | number }}
+          </h2>
+
+          <span class="growth">
+            {{ stat.change }} this week
+          </span>
+
+        </div>
+
+
+        <div class="stat-icon">
+
+          <mat-icon>
+            {{ stat.icon }}
+          </mat-icon>
+
+        </div>
+
+      </div>
+
+    </mat-card>
+
+  </div>
+
+
+  <!-- USERS + ACTIVITY -->
+ 
+
+  <div
+    class="content-section"
+    fxLayout="row"
+    fxLayoutGap="20px"
+    fxLayout.lt-md="column"
+  >
+    <!-- RECENT USERS -->
+   
+    <mat-card
+      class="section-card"
+      fxFlex="60"
+    >
+
+      <div
+        class="section-header"
+        fxLayout="row"
+        fxLayoutAlign="space-between center"
+      >
+
+        <div>
+
+          <h2>
+            Recent Users
+          </h2>
+
+          <p>
+            Recently registered users
+          </p>
+
+        </div>
+
+
+        <button
+          mat-button
+          color="primary"
+          routerLink="/admin/users"
+        >
+          View All
+        </button>
+
+      </div>
+
+
+      <!-- USERS -->
+
+      <div
+        class="user-row"
+        *ngFor="let user of recentUsers"
+      >
+
+        <div class="user-avatar">
+
+          {{ getInitial(user) }}
+
+        </div>
+
+
+        <div
+          class="user-info"
+          fxFlex
+        >
+
+          <strong>
+            {{ getUserName(user) }}
+          </strong>
+
+          <span>
+            {{ user.email }}
+          </span>
+
+        </div>
+
+
+        <div class="user-role">
+
+          {{ getRoleText(user.user_type) }}
+
+        </div>
+
+      </div>
+
+
+      <!-- NO USERS -->
+
+      <div
+        *ngIf="recentUsers.length === 0"
+        class="empty-message"
+      >
+
+        No users found.
+
+      </div>
+
+    </mat-card>
+
+
+
+   
+    <!-- PLATFORM ACTIVITY -->
+   
+
+    <mat-card
+      class="section-card"
+      fxFlex="40"
+    >
+
+      <div class="section-header">
+
+        <h2>
+          Platform Activity
+        </h2>
+
+        <p>
+          Latest platform statistics
+        </p>
+
+      </div>
+
+
+      <!-- NEW USERS -->
+
+      <div
+        class="activity-item"
+      >
+
+        <div class="activity-icon">
+
+          <mat-icon>
+            person_add
+          </mat-icon>
+
+        </div>
+
+
+        <div fxFlex>
+
+          <strong>
+            New users
+          </strong>
+
+          <span>
+            {{ activity.new_users }} new users this week
+          </span>
+
+        </div>
+
+      </div>
+
+
+
+      <!-- NEW JOBS -->
+
+      <div
+        class="activity-item"
+      >
+
+        <div class="activity-icon">
+
+          <mat-icon>
+            work
+          </mat-icon>
+
+        </div>
+
+
+        <div fxFlex>
+
+          <strong>
+            New jobs
+          </strong>
+
+          <span>
+            {{ activity.new_jobs }} jobs posted this week
+          </span>
+
+        </div>
+
+      </div>
+
+
+
+      <!-- APPLICATIONS -->
+
+      <div
+        class="activity-item"
+      >
+
+        <div class="activity-icon">
+
+          <mat-icon>
+            description
+          </mat-icon>
+
+        </div>
+
+
+        <div fxFlex>
+
+          <strong>
+            Applications
+          </strong>
+
+          <span>
+            {{ activity.applications }} applications this week
+          </span>
+
+        </div>
+
+      </div>
+
+
+
+      <!-- COMPANIES -->
+
+      <div
+        class="activity-item"
+      >
+
+        <div class="activity-icon">
+
+          <mat-icon>
+            business
+          </mat-icon>
+
+        </div>
+
+
+        <div fxFlex>
+
+          <strong>
+            Companies
+          </strong>
+
+          <span>
+            {{ activity.new_companies }} new companies this week
+          </span>
+
+        </div>
+
+      </div>
+
+    </mat-card>
+
+  </div>
+
+
+
+ 
+  <!-- RECENT JOBS -->
+ 
+
+  <mat-card class="jobs-card">
+
+    <div
+      class="section-header"
+      fxLayout="row"
+      fxLayoutAlign="space-between center"
+    >
+
+      <div>
+
+        <h2>
+          Recent Jobs
+        </h2>
+
+        <p>
+          Recently posted jobs on the platform
+        </p>
+
+      </div>
+
+
+      <button
+        mat-button
+        color="primary"
+        routerLink="/admin/jobs"
+      >
+        View All
+      </button>
+
+    </div>
+
+
+
+    <!-- JOB ROW -->
+
+    <div
+      class="job-row"
+      *ngFor="let job of recentJobs"
+    >
+
+      <div class="job-icon">
+
+        <mat-icon>
+          work
+        </mat-icon>
+
+      </div>
+
+
+      <div
+        class="job-info"
+        fxFlex
+      >
+
+        <strong>
+          {{ job.title }}
+        </strong>
+
+        <span>
+          {{ job.company_name || 'No company' }}
+        </span>
+
+      </div>
+
+
+      <div class="applicants">
+
+        <strong>
+          {{ job.total_applicants || 0 }}
+        </strong>
+
+        <span>
+          Applicants
+        </span>
+
+      </div>
+
+
+      <span class="job-status">
+
+        {{ job.status }}
+
+      </span>
+
+
+      <button
+        mat-icon-button
+      >
+
+        <mat-icon>
+          more_vert
+        </mat-icon>
+
+      </button>
+
+    </div>
+
+
+
+    <!-- NO JOBS -->
+
+    <div
+      *ngIf="recentJobs.length === 0"
+      class="empty-message"
+    >
+
+      No jobs found.
+
+    </div>
+
+  </mat-card>
+
+</div>

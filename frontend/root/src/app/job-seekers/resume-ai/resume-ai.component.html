@@ -1,0 +1,498 @@
+<div
+  class="resume-ai-page"
+  fxLayout="column"
+  fxLayoutGap="24px"
+>
+
+  <!-- Page Header -->
+
+  <div class="page-header">
+
+    <h1>AI Job Recommendations</h1>
+
+    <p>
+      Upload your resume and let AI find jobs
+      that match your skills.
+    </p>
+
+  </div>
+
+
+  <!-- Upload Card -->
+
+  <mat-card class="upload-card">
+
+    <div
+      fxLayout="column"
+      fxLayoutAlign="center center"
+      fxLayoutGap="20px"
+    >
+
+      <mat-icon class="upload-icon">
+        cloud_upload
+      </mat-icon>
+
+      <h2>
+        Upload your resume
+      </h2>
+
+      <p class="upload-text">
+        Upload your latest resume in PDF format
+      </p>
+
+
+      <!-- File Input -->
+
+      <input
+        #fileInput
+        type="file"
+        accept=".pdf"
+        hidden
+        (change)="onFileSelected($event)"
+      >
+
+
+      <!-- Choose Resume -->
+
+      <button
+        mat-raised-button
+        color="primary"
+        type="button"
+        (click)="fileInput.click()"
+      >
+
+        <mat-icon>
+          upload_file
+        </mat-icon>
+
+        Choose Resume
+
+      </button>
+
+
+      <span class="file-info">
+        PDF only • Maximum 5 MB
+      </span>
+
+    </div>
+
+
+    <!-- Selected File -->
+
+    <div
+      *ngIf="selectedFile"
+      class="selected-file"
+      fxLayout="row"
+      fxLayoutAlign="space-between center"
+    >
+
+      <div
+        fxLayout="row"
+        fxLayoutAlign="start center"
+        fxLayoutGap="12px"
+      >
+
+        <mat-icon>
+          picture_as_pdf
+        </mat-icon>
+
+        <div>
+
+          <div class="file-name">
+            {{ selectedFile.name }}
+          </div>
+
+          <div class="file-size">
+
+            {{
+              (selectedFile.size / 1024 / 1024)
+              .toFixed(2)
+            }}
+            MB
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <button
+        mat-icon-button
+        type="button"
+        (click)="removeFile()"
+      >
+
+        <mat-icon>
+          close
+        </mat-icon>
+
+      </button>
+
+    </div>
+
+
+    <!-- Find Jobs Button -->
+
+    <div
+      class="find-jobs-section"
+      fxLayout="row"
+      fxLayoutAlign="center center"
+    >
+
+      <button
+        mat-raised-button
+        color="primary"
+        type="button"
+        [disabled]="!selectedFile || loading"
+        (click)="findJobs()"
+      >
+
+        <mat-icon>
+          auto_awesome
+        </mat-icon>
+
+        {{
+          loading
+            ? 'Analyzing Resume...'
+            : 'Find Matching Jobs'
+        }}
+
+      </button>
+
+    </div>
+
+  </mat-card>
+
+
+  <!-- Resume Analysis -->
+
+  <mat-card
+    class="analysis-card"
+    *ngIf="resumeAnalysis"
+  >
+
+    <div
+      fxLayout="row"
+      fxLayoutAlign="start center"
+      fxLayoutGap="12px"
+    >
+
+      <mat-icon>
+        auto_awesome
+      </mat-icon>
+
+      <h2>
+        Resume Analysis
+      </h2>
+
+    </div>
+
+
+    <div
+      class="analysis-section"
+      fxLayout="column"
+      fxLayoutGap="12px"
+    >
+
+      <div>
+
+        <h3>
+          Skills
+        </h3>
+
+        <div
+          fxLayout="row"
+          fxLayoutGap="8px"
+          fxLayoutWrap
+        >
+
+          <span
+            class="skill-chip"
+            *ngFor="let skill of resumeAnalysis.skills"
+          >
+            {{ skill }}
+          </span>
+
+        </div>
+
+      </div>
+
+
+      <div>
+
+        <h3>
+          Suitable Roles
+        </h3>
+
+        <div
+          fxLayout="row"
+          fxLayoutGap="8px"
+          fxLayoutWrap
+        >
+
+          <span
+            class="role-chip"
+            *ngFor="let role of resumeAnalysis.roles"
+          >
+            {{ role }}
+          </span>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </mat-card>
+
+
+  <!-- Recommended Jobs -->
+
+  <div
+    class="jobs-section"
+    *ngIf="recommendedJobs.length > 0"
+  >
+
+    <div class="section-header">
+
+      <h2>
+        Recommended Jobs
+      </h2>
+
+      <p>
+        Jobs ranked according to your resume
+      </p>
+
+    </div>
+
+
+    <!-- Job Cards -->
+
+    <div
+      fxLayout="column"
+      fxLayoutGap="16px"
+    >
+
+      <mat-card
+        class="job-card"
+        *ngFor="let job of recommendedJobs"
+      >
+
+        <div
+          fxLayout="row"
+          fxLayoutAlign="space-between start"
+          fxLayoutGap="20px"
+        >
+
+          <!-- Job Information -->
+
+          <div
+            fxFlex
+            fxLayout="column"
+            fxLayoutGap="8px"
+          >
+
+            <h2 class="job-title">
+              {{ job.title }}
+            </h2>
+
+
+            <div class="company">
+
+              <mat-icon>
+                business
+              </mat-icon>
+
+              <span>
+                {{ job.company_name || 'Company not specified' }}
+              </span>
+
+            </div>
+
+
+            <div class="job-location">
+
+              <mat-icon>
+                location_on
+              </mat-icon>
+
+              <span>
+                {{ job.location || 'Location not specified' }}
+              </span>
+
+            </div>
+
+
+            <div class="job-type">
+
+              <span>
+                {{ job.job_type }}
+              </span>
+
+              <span
+                *ngIf="job.experience_required"
+              >
+                • {{ job.experience_required }}
+              </span>
+
+            </div>
+
+
+            <!-- Matched Skills -->
+
+            <div
+              class="matched-skills"
+              *ngIf="job.matched_skills?.length"
+            >
+
+              <span
+                class="matched-label"
+              >
+                Matched Skills:
+              </span>
+
+              <span
+                class="skill-chip"
+                *ngFor="
+                  let skill of job.matched_skills
+                "
+              >
+                {{ skill }}
+              </span>
+
+            </div>
+
+          </div>
+
+
+          <!-- Match Percentage -->
+
+          <div
+            class="match-section"
+            fxLayout="column"
+            fxLayoutAlign="center center"
+          >
+
+            <div class="match-percentage">
+
+              {{ job.match_percentage }}%
+
+            </div>
+
+            <span class="match-label">
+              Match
+            </span>
+
+          </div>
+
+        </div>
+
+
+        <!-- Bottom -->
+
+        <div
+          class="job-bottom"
+          fxLayout="row"
+          fxLayoutAlign="space-between center"
+        >
+
+          <div>
+
+            <span
+              *ngIf="job.salary_min || job.salary_max"
+            >
+
+              ₹{{ job.salary_min || 0 }}
+              -
+              ₹{{ job.salary_max || 0 }}
+
+            </span>
+
+          </div>
+
+
+          <button
+            mat-raised-button
+            color="primary"
+            type="button"
+            (click)="viewJob(job.job_id)"
+          >
+
+            View Job
+
+            <mat-icon>
+              arrow_forward
+            </mat-icon>
+
+          </button>
+
+        </div>
+
+      </mat-card>
+
+    </div>
+
+  </div>
+
+
+  <!-- No Jobs -->
+
+  <mat-card
+    class="no-jobs-card"
+    *ngIf="
+      !loading &&
+      resumeAnalysis &&
+      recommendedJobs.length === 0
+    "
+  >
+
+    <mat-icon>
+      search_off
+    </mat-icon>
+
+    <h2>
+      No matching jobs found
+    </h2>
+
+    <p>
+      We couldn't find active jobs matching
+      your resume.
+    </p>
+
+  </mat-card>
+
+
+  <!-- Information -->
+
+  <mat-card class="info-card">
+
+    <div
+      fxLayout="row"
+      fxLayoutGap="16px"
+      fxLayoutAlign="start center"
+    >
+
+      <mat-icon>
+        auto_awesome
+      </mat-icon>
+
+      <div>
+
+        <h3>
+          How AI Job Matching Works
+        </h3>
+
+        <p>
+          AI analyzes your resume, identifies
+          your skills and suitable roles, and
+          compares them with available jobs.
+        </p>
+
+      </div>
+
+    </div>
+
+  </mat-card>
+
+</div>

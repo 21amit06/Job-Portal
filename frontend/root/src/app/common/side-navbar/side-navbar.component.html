@@ -1,0 +1,244 @@
+<div
+  class="sidenav"
+  fxLayout="column"
+  fxLayoutGap="450px"
+>
+
+  <!-- ================= JOB SEEKER ================= -->
+
+  <div
+    *ngIf="userType === 'JOB_SEEKER'"
+    fxLayout="column"
+    fxLayoutGap="6px"
+     fxFlex
+  >
+
+    <a
+      routerLink="/jobseekers/dashboard"
+      routerLinkActive="active"
+      fxLayout="row"
+      fxLayoutAlign="start center"
+      fxLayoutGap="14px"
+    >
+      <mat-icon>dashboard</mat-icon>
+      <span>Dashboard</span>
+    </a>
+
+
+    <a
+      routerLink="/jobseekers/jobs"
+      routerLinkActive="active"
+      fxLayout="row"
+      fxLayoutAlign="start center"
+      fxLayoutGap="14px"
+    >
+      <mat-icon>work</mat-icon>
+      <span>Jobs</span>
+    </a>
+
+
+    <a
+      routerLink="/jobseekers/applications"
+      routerLinkActive="active"
+      fxLayout="row"
+      fxLayoutAlign="start center"
+      fxLayoutGap="14px"
+    >
+      <mat-icon>description</mat-icon>
+      <span>Applications</span>
+    </a>
+
+
+    <a
+      routerLink="/jobseekers/interviews"
+      routerLinkActive="active"
+      fxLayout="row"
+      fxLayoutAlign="start center"
+      fxLayoutGap="14px"
+    >
+      <mat-icon>event</mat-icon>
+      <span>Interviews</span>
+    </a>
+
+
+
+<a
+  routerLink="/jobseekers/ai-jobs"
+  routerLinkActive="active"
+  fxLayout="row"
+  fxLayoutAlign="start center"
+  fxLayoutGap="14px"
+>
+  <mat-icon>auto_awesome</mat-icon>
+  <span>AI Job Match</span>
+</a>
+
+
+
+
+    <a
+      routerLink="/jobseekers/profile"
+      routerLinkActive="active"
+      fxLayout="row"
+      fxLayoutAlign="start center"
+      fxLayoutGap="14px"
+    >
+      <mat-icon>person</mat-icon>
+      <span>Profile</span>
+    </a>
+
+  </div>
+
+
+  <!-- ================= RECRUITER ================= -->
+
+  <div
+    *ngIf="userType === 'RECRUITER'"
+    fxLayout="column"
+    fxLayoutGap="6px"
+  >
+
+    <a
+      routerLink="/recuriter/dashboard"
+      routerLinkActive="active"
+      fxLayout="row"
+      fxLayoutAlign="start center"
+      fxLayoutGap="14px"
+    >
+      <mat-icon>dashboard</mat-icon>
+      <span>Dashboard</span>
+    </a>
+
+
+    <a
+      routerLink="/recuriter/jobs"
+      routerLinkActive="active"
+      fxLayout="row"
+      fxLayoutAlign="start center"
+      fxLayoutGap="14px"
+    >
+      <mat-icon>work</mat-icon>
+      <span>Jobs</span>
+    </a>
+
+
+    <a
+      routerLink="/recuriter/applicant"
+      routerLinkActive="active"
+      fxLayout="row"
+      fxLayoutAlign="start center"
+      fxLayoutGap="14px"
+    >
+      <mat-icon>group</mat-icon>
+      <span>Applicants</span>
+    </a>
+
+
+    <a
+      routerLink="/recuriter/interviews"
+      routerLinkActive="active"
+      fxLayout="row"
+      fxLayoutAlign="start center"
+      fxLayoutGap="14px"
+    >
+      <mat-icon>event</mat-icon>
+      <span>Interviews</span>
+    </a>
+
+
+    <a
+      routerLink="/recuriter/profile"
+      routerLinkActive="active"
+      fxLayout="row"
+      fxLayoutAlign="start center"
+      fxLayoutGap="14px"
+    >
+      <mat-icon>person</mat-icon>
+      <span>Profile</span>
+    </a>
+
+  </div>
+
+
+  <!-- ================= ADMIN ================= -->
+
+  <div
+    *ngIf="userType === 'ADMIN'"
+    fxLayout="column"
+    fxLayoutGap="6px"
+  >
+
+    <a
+      routerLink="/admin/dashboard"
+      routerLinkActive="active"
+      fxLayout="row"
+      fxLayoutAlign="start center"
+      fxLayoutGap="14px"
+    >
+      <mat-icon>dashboard</mat-icon>
+      <span>Dashboard</span>
+    </a>
+
+
+    <a
+      routerLink="/admin/users"
+      routerLinkActive="active"
+      fxLayout="row"
+      fxLayoutAlign="start center"
+      fxLayoutGap="14px"
+    >
+      <mat-icon>people</mat-icon>
+      <span>Users</span>
+    </a>
+
+
+    <a
+      routerLink="/admin/jobs"
+      routerLinkActive="active"
+      fxLayout="row"
+      fxLayoutAlign="start center"
+      fxLayoutGap="14px"
+    >
+      <mat-icon>work</mat-icon>
+      <span>Jobs</span>
+    </a>
+
+
+    <a
+      routerLink="/admin/company"
+      routerLinkActive="active"
+      fxLayout="row"
+      fxLayoutAlign="start center"
+      fxLayoutGap="14px"
+    >
+      <mat-icon>business</mat-icon>
+      <span>Companies</span>
+    </a>
+
+  </div>
+
+
+  <!-- Logout -->
+
+  <div
+    class="logout-section"
+    fxLayout="column"
+     fxFlex="none"
+  >
+
+    <a
+      fxLayout="row"
+      fxLayoutAlign="start center"
+      fxLayoutGap="14px"
+      (click)="logout()"
+    >
+
+      <mat-icon>logout</mat-icon>
+
+      <span>Logout</span>
+
+    </a>
+
+  </div>
+
+</div>

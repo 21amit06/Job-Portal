@@ -1,0 +1,401 @@
+<div class="jobs-page">
+
+  <!-- Header -->
+
+  <div class="page-header">
+
+    <h1>Jobs</h1>
+
+    <p>
+      Manage and monitor all jobs posted on the platform
+    </p>
+
+  </div>
+
+
+  <!-- Filters -->
+
+  <mat-card class="filter-card">
+
+    <div
+      fxLayout="row"
+      fxLayoutGap="16px"
+      fxLayoutAlign="start center"
+    >
+
+      <!-- Search -->
+
+      <mat-form-field
+        appearance="outline"
+        class="search-field"
+        fxFlex
+      >
+
+        <!-- <mat-label>Search companies</mat-label> -->
+        <div class="searchinput">
+           <mat-icon >search</mat-icon>
+        <input
+          matInput
+          [(ngModel)]="searchText"
+          placeholder="Company name, recruiter or location"
+        >
+        </div>
+        
+
+        
+      </mat-form-field>
+
+
+      <!-- Status -->
+
+      <mat-form-field
+        appearance="outline"
+        class="filter-field"
+      >
+
+        <mat-label>
+          Status
+        </mat-label>
+
+        <mat-select
+          [(ngModel)]="selectedStatus"
+        >
+
+          <mat-option value="All">
+            All Status
+          </mat-option>
+
+          <mat-option value="Active">
+            Active
+          </mat-option>
+
+          <mat-option value="Pending">
+            Pending
+          </mat-option>
+
+          <mat-option value="Closed">
+            Closed
+          </mat-option>
+
+        </mat-select>
+
+      </mat-form-field>
+
+
+      <!-- Job Type -->
+
+      <mat-form-field
+        appearance="outline"
+        class="filter-field"
+      >
+
+        <mat-label>
+          Job Type
+        </mat-label>
+
+        <mat-select
+          [(ngModel)]="selectedType"
+        >
+
+          <mat-option value="All">
+            All Types
+          </mat-option>
+
+          <mat-option value="Full Time">
+            Full Time
+          </mat-option>
+
+          <mat-option value="Part Time">
+            Part Time
+          </mat-option>
+
+          <mat-option value="Contract">
+            Contract
+          </mat-option>
+
+        </mat-select>
+
+      </mat-form-field>
+
+    </div>
+
+  </mat-card>
+
+
+  <!-- Count -->
+
+  <div class="job-count">
+
+    Total {{ filteredJobs.length }} Jobs availiable
+
+  </div>
+
+
+  <!-- Jobs -->
+
+  <mat-card class="table-card">
+
+    <!-- Header -->
+
+    <div class="table-header">
+
+      <div class="job-column">
+        Job
+      </div>
+
+      <div class="company-column">
+        Company
+      </div>
+
+      <div class="type-column">
+        Type
+      </div>
+
+      <div class="applicant-column">
+        Applicants
+      </div>
+
+      <div class="status-column">
+        Status
+      </div>
+
+      <div class="action-column">
+        Actions
+      </div>
+
+    </div>
+
+
+    <!-- Rows -->
+
+    <div
+      class="job-row"
+      *ngFor="let job of filteredJobs"
+    >
+
+      <!-- Job -->
+
+      <div class="job-column">
+
+        <div
+          fxLayout="row"
+          fxLayoutAlign="start center"
+          fxLayoutGap="12px"
+        >
+
+          <div class="job-icon">
+
+            <mat-icon>
+              work
+            </mat-icon>
+
+          </div>
+
+
+          <div class="job-info">
+
+            <strong>
+              {{ job.title }}
+            </strong>
+
+            <span>
+              {{ job.location }}
+            </span>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- Company -->
+
+      <div class="company-column">
+
+        <div class="company-info">
+
+          <strong>
+            {{ job.company }}
+          </strong>
+
+          <span>
+            {{ job.recruiter }}
+          </span>
+
+        </div>
+
+      </div>
+
+
+      <!-- Type -->
+
+      <div class="type-column">
+
+        {{ job.type }}
+
+      </div>
+
+
+      <!-- Applicants -->
+
+      <div class="applicant-column">
+
+        <strong>
+          {{ job.applicants }}
+        </strong>
+
+      </div>
+
+
+      <!-- Status -->
+
+      <div class="status-column">
+
+        <span
+          class="status-badge"
+          [class.active]="job.status === 'Active'"
+          [class.pending]="job.status === 'Pending'"
+          [class.closed]="job.status === 'Closed'"
+        >
+
+          {{ job.status }}
+
+        </span>
+
+      </div>
+
+
+      <!-- Actions -->
+
+      <div class="action-column">
+
+        <button
+          mat-icon-button
+          matTooltip="View Job"
+          (click)="viewJob(job)"
+        >
+
+          <mat-icon>
+            visibility
+          </mat-icon>
+
+        </button>
+
+
+        <button
+          mat-icon-button
+          [matMenuTriggerFor]="menu"
+        >
+
+          <mat-icon>
+            more_vert
+          </mat-icon>
+
+        </button>
+
+
+        <mat-menu #menu="matMenu">
+
+          <button
+            mat-menu-item
+            (click)="viewJob(job)"
+          >
+
+            <mat-icon>
+              visibility
+            </mat-icon>
+
+            <span>
+              View Job
+            </span>
+
+          </button>
+
+
+          <!-- <button
+            mat-menu-item
+            *ngIf="job.status === 'Pending'"
+            (click)="approveJob(job)"
+          >
+
+            <mat-icon>
+              check_circle
+            </mat-icon>
+
+            <span>
+              Approve Job
+            </span>
+
+          </button> -->
+
+
+          <button
+            mat-menu-item
+            *ngIf="job.status !== 'Pending'"
+            (click)="toggleStatus(job)"
+          >
+
+            <mat-icon>
+              {{ job.status === 'Active'
+                ? 'block'
+                : 'check_circle'
+              }}
+            </mat-icon>
+
+            <span>
+              {{ job.status === 'Active'
+                ? 'Close Job'
+                : 'Activate Job'
+              }}
+            </span>
+
+          </button>
+
+
+          <button
+            mat-menu-item
+            (click)="deleteJob(job)"
+          >
+
+            <mat-icon>
+              delete
+            </mat-icon>
+
+            <span>
+              Delete Job
+            </span>
+
+          </button>
+
+        </mat-menu>
+
+      </div>
+
+    </div>
+
+
+    <!-- Empty -->
+
+    <div
+      class="empty-state"
+      *ngIf="filteredJobs.length === 0"
+    >
+
+      <mat-icon>
+        work_off
+      </mat-icon>
+
+      <h2>
+        No jobs found
+      </h2>
+
+      <p>
+        Try changing your search or filters.
+      </p>
+
+    </div>
+
+  </mat-card>
+
+</div>

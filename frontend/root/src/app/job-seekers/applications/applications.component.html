@@ -1,0 +1,286 @@
+<div
+  class="applications-page"
+  fxLayout="column"
+  fxLayoutGap="22px"
+>
+
+  <!--  HEADER  -->
+
+  <div class="page-header">
+
+    <h1>
+      My Applications
+    </h1>
+
+    <p>
+      Track and manage your job applications
+    </p>
+
+  </div>
+
+
+  <!--  TABS  -->
+
+  <div
+    class="application-tabs"
+    fxLayout="row"
+    fxLayoutGap="28px"
+  >
+
+    <!-- All -->
+
+    <button
+      class="tab-button"
+      [class.active]="selectedStatus === 'All'"
+      (click)="selectStatus('All')"
+    >
+
+      All ({{ applications.length }})
+
+    </button>
+
+
+    <!-- Applied -->
+
+    <button
+      class="tab-button"
+      [class.active]="selectedStatus === 'APPLIED'"
+      (click)="selectStatus('APPLIED')"
+    >
+
+      Applied ({{ getCount('APPLIED') }})
+
+    </button>
+
+
+    <!-- Shortlisted -->
+
+    <button
+      class="tab-button"
+      [class.active]="selectedStatus === 'SHORTLISTED'"
+      (click)="selectStatus('SHORTLISTED')"
+    >
+
+      In Review ({{ getCount('SHORTLISTED') }})
+
+    </button>
+
+
+    <!-- Interview -->
+
+    <button
+      class="tab-button"
+      [class.active]="selectedStatus === 'INTERVIEW'"
+      (click)="selectStatus('INTERVIEW')"
+    >
+
+      Interview ({{ getCount('INTERVIEW') }})
+
+    </button>
+
+
+    <!-- Selected -->
+
+    <button
+      class="tab-button"
+      [class.active]="selectedStatus === 'SELECTED'"
+      (click)="selectStatus('SELECTED')"
+    >
+
+      Offer ({{ getCount('SELECTED') }})
+
+    </button>
+
+  </div>
+
+
+  <!--  APPLICATION TABLE  -->
+
+  <mat-card class="applications-card">
+
+    <table>
+
+      <thead>
+
+        <tr>
+
+          <th>
+            Job
+          </th>
+
+          <th>
+            Company
+          </th>
+
+          <th>
+            Applied On
+          </th>
+
+          <th>
+            Status
+          </th>
+
+          <th>
+            Actions
+          </th>
+
+        </tr>
+
+      </thead>
+
+
+      <tbody>
+
+        <!-- APPLICATION ROW -->
+
+        <tr
+          *ngFor="let application of filteredApplications"
+        >
+
+          <!--  JOB  -->
+
+          <td>
+
+            <div
+              class="job-cell"
+              fxLayout="row"
+              fxLayoutAlign="start center"
+              fxLayoutGap="12px"
+            >
+
+              <!-- Company Logo -->
+
+              <div
+                class="company-logo"
+              >
+
+                {{
+                  application.company_name
+                    ? application.company_name
+                        .substring(0, 2)
+                        .toUpperCase()
+                    : 'NA'
+                }}
+
+              </div>
+
+
+              <!-- Job Information -->
+
+              <div>
+
+                <div class="job-title">
+
+                  {{ application.job_title || 'Job not available' }}
+
+                </div>
+
+
+                <div class="job-type">
+
+                  {{ application.job_type || 'Not specified' }}
+
+                </div>
+
+              </div>
+
+            </div>
+
+          </td>
+
+
+          <!--  COMPANY  -->
+
+          <td>
+
+            <span class="company-name">
+
+              {{ application.company_name || 'Independent Recruiter' }}
+
+            </span>
+
+          </td>
+
+
+          <!--  APPLIED DATE  -->
+
+          <td>
+
+            <span class="applied-date">
+
+              {{
+                application.applied_at
+                  ? (application.applied_at | date:'dd MMM yyyy')
+                  : 'Not available'
+              }}
+
+            </span>
+
+          </td>
+
+
+          <!--  STATUS  -->
+
+          <td>
+
+            <span
+              class="status"
+              [ngClass]="getStatusClass(application.status)"
+            >
+
+              {{ application.status }}
+
+            </span>
+
+          </td>
+
+
+          <!--  ACTION  -->
+
+          <td>
+
+            <button
+              mat-stroked-button
+              class="view-button"
+              (click)="viewApplication(application)"
+            >
+
+              View
+
+            </button>
+
+          </td>
+
+        </tr>
+
+
+        <!--  EMPTY  -->
+
+        <tr
+          *ngIf="filteredApplications.length === 0"
+        >
+
+          <td
+            colspan="5"
+            class="empty-state"
+          >
+
+            <mat-icon>
+              work_off
+            </mat-icon>
+
+            <div>
+              No applications found.
+            </div>
+
+          </td>
+
+        </tr>
+
+      </tbody>
+
+    </table>
+
+  </mat-card>
+
+</div>

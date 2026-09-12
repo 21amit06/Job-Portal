@@ -1,0 +1,573 @@
+<div class="page" fxLayout="column">
+
+  <!-- PAGE HEADER -->
+
+  <div
+    class="page-header"
+    fxLayout="row"
+    fxLayoutAlign="space-between center"
+  >
+
+    <div>
+
+      <h1>Interviews</h1>
+
+      <p>
+        Manage and track your candidate interviews
+      </p>
+
+    </div>
+
+  </div>
+
+
+  <!-- FILTER SECTION -->
+
+  <div
+    class="filter-card"
+    fxLayout="row"
+    fxLayoutGap="20px"
+    fxLayoutAlign="start center"
+  >
+
+    <!-- Search -->
+
+    <mat-form-field
+      appearance="outline"
+      class="search-field"
+    >
+
+      <div class="searchinput">
+
+        <mat-icon matPrefix>
+          search
+        </mat-icon>
+
+        <input
+          matInput
+          type="text"
+          [(ngModel)]="searchText"
+          placeholder="Search candidate or position"
+        >
+
+      </div>
+
+    </mat-form-field>
+
+
+    <!-- Status -->
+
+    <mat-form-field
+      appearance="outline"
+      class="filter-field"
+    >
+
+      <mat-label>Status</mat-label>
+
+      <mat-select
+        [(ngModel)]="selectedStatus"
+      >
+
+        <mat-option value="All">
+          All
+        </mat-option>
+
+        <mat-option value="Upcoming">
+          Upcoming
+        </mat-option>
+
+        <mat-option value="Completed">
+          Completed
+        </mat-option>
+
+        <mat-option value="Cancelled">
+          Cancelled
+        </mat-option>
+
+      </mat-select>
+
+    </mat-form-field>
+
+  </div>
+
+
+<div class="interview-count">
+
+   Total interview: {{ filteredInterviews.length }}
+
+  </div>
+
+
+
+
+  <!-- INTERVIEWS LIST -->
+
+  <div
+    class="interviews-container"
+    fxLayout="column"
+    fxLayoutGap="16px"
+  >
+
+    <!-- INTERVIEW CARD -->
+
+    <mat-card
+      class="interview-card"
+      *ngFor="let interview of filteredInterviews"
+    >
+
+      <!-- TOP SECTION -->
+
+      <div
+        class="interview-top"
+        fxLayout="row"
+        fxLayoutAlign="space-between center"
+      >
+
+        <!-- Candidate -->
+
+        <div
+          class="candidate-section"
+          fxLayout="row"
+          fxLayoutAlign="start center"
+          fxLayoutGap="14px"
+        >
+
+          <!-- Initials -->
+
+          <div class="candidate-avatar">
+
+            {{ getInitials(interview.job_seeker_name) }}
+
+          </div>
+
+
+          <!-- Candidate Information -->
+
+          <div class="candidate-info">
+
+            <h3>
+              {{ interview.job_seeker_name || 'Candidate' }}
+            </h3>
+
+            <p>
+              {{ interview.job_seeker_email || 'Email not available' }}
+            </p>
+
+          </div>
+
+        </div>
+
+
+        <!-- Status + Menu -->
+
+        <div
+          fxLayout="row"
+          fxLayoutAlign="center center"
+          fxLayoutGap="12px"
+        >
+
+          <!-- Status -->
+
+          <span
+            class="status-badge"
+
+            [class.upcoming]="
+              interview.status === 'SCHEDULED' ||
+              interview.status === 'RESCHEDULED'
+            "
+
+            [class.completed]="
+              interview.status === 'COMPLETED'
+            "
+
+            [class.cancelled]="
+              interview.status === 'CANCELLED'
+            "
+          >
+
+            {{ getStatusText(interview.status) }}
+
+          </span>
+
+
+          <!-- Menu -->
+
+          <button
+            mat-icon-button
+            [matMenuTriggerFor]="interviewMenu"
+          >
+
+            <mat-icon>
+              more_vert
+            </mat-icon>
+
+          </button>
+
+
+          <mat-menu #interviewMenu="matMenu">
+
+            <!-- View -->
+
+            <button
+              mat-menu-item
+              (click)="viewInterview(interview)"
+            >
+
+              <mat-icon>
+                visibility
+              </mat-icon>
+
+              <span>
+                View Details
+              </span>
+
+            </button>
+
+
+            <!-- Reschedule -->
+
+            <button
+              mat-menu-item
+
+              *ngIf="
+                interview.status === 'SCHEDULED' ||
+                interview.status === 'RESCHEDULED'
+              "
+
+              (click)="rescheduleInterview(interview)"
+            >
+
+              <mat-icon>
+                edit_calendar
+              </mat-icon>
+
+              <span>
+                Reschedule
+              </span>
+
+            </button>
+
+
+            <!-- Cancel -->
+
+            <button
+              mat-menu-item
+
+              *ngIf="
+                interview.status === 'SCHEDULED' ||
+                interview.status === 'RESCHEDULED'
+              "
+
+              (click)="cancelInterview(interview)"
+            >
+
+              <mat-icon>
+                cancel
+              </mat-icon>
+
+              <span>
+                Cancel Interview
+              </span>
+
+            </button>
+
+          </mat-menu>
+
+        </div>
+
+      </div>
+
+
+      <!-- JOB INFORMATION -->
+
+      <div
+        class="job-information"
+        fxLayout="row"
+        fxLayoutGap="40px"
+      >
+
+        <!-- Position -->
+
+        <div
+          class="information-item"
+          fxLayout="row"
+          fxLayoutAlign="start center"
+          fxLayoutGap="4px"
+        >
+
+          <mat-icon>
+            work_outline
+          </mat-icon>
+
+          <div class="interview-disc">
+
+            <span class="information-label">
+              Position
+            </span>
+
+            <p>
+              {{ interview.title || 'Not specified' }}
+            </p>
+
+          </div>
+
+        </div>
+
+
+        <!-- Date -->
+
+        <div
+          class="information-item"
+          fxLayout="row"
+          fxLayoutAlign="start center"
+          fxLayoutGap="8px"
+        >
+
+          <mat-icon>
+            calendar_today
+          </mat-icon>
+
+          <div>
+
+            <span class="information-label">
+              Date
+            </span>
+
+            <p>
+              {{ interview.scheduled_date | date:'dd MMM yyyy' }}
+            </p>
+
+          </div>
+
+        </div>
+
+
+        <!-- Time -->
+
+        <div
+          class="information-item"
+          fxLayout="row"
+          fxLayoutAlign="start center"
+          fxLayoutGap="8px"
+        >
+
+          <mat-icon>
+            schedule
+          </mat-icon>
+
+          <div>
+
+            <span class="information-label">
+              Time
+            </span>
+
+            <p>
+              {{ interview.scheduled_time }}
+            </p>
+
+          </div>
+
+        </div>
+
+
+        <!-- Interview Type -->
+
+        <div
+          class="information-item"
+          fxLayout="row"
+          fxLayoutAlign="start center"
+          fxLayoutGap="8px"
+        >
+
+          <mat-icon>
+            videocam
+          </mat-icon>
+
+          <div>
+
+            <span class="information-label">
+              Type
+            </span>
+
+            <p>
+              {{ getInterviewType(interview) }}
+            </p>
+
+          </div>
+
+        </div>
+
+
+        <!-- Interviewer -->
+
+        <div
+          class="information-item"
+          fxLayout="row"
+          fxLayoutAlign="start center"
+          fxLayoutGap="8px"
+        >
+
+          <mat-icon>
+            person
+          </mat-icon>
+
+          <div>
+
+            <span class="information-label">
+              Interviewer
+            </span>
+
+            <p>
+              {{ interview.interviewer_name || 'Not specified' }}
+            </p>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- LOCATION / MEETING LINK -->
+
+      <div
+        class="interview-extra"
+        fxLayout="row"
+        fxLayoutAlign="start center"
+        fxLayoutGap="20px"
+      >
+
+        <!-- Online -->
+
+        <div
+          *ngIf="interview.mode === 'ONLINE'"
+
+          fxLayout="row"
+          fxLayoutAlign="start center"
+          fxLayoutGap="8px"
+        >
+
+          <mat-icon>
+            link
+          </mat-icon>
+
+          <span>
+            Online Interview
+          </span>
+
+        </div>
+
+
+        <!-- Offline -->
+
+        <div
+          *ngIf="interview.mode === 'OFFLINE'"
+
+          fxLayout="row"
+          fxLayoutAlign="start center"
+          fxLayoutGap="8px"
+        >
+
+          <mat-icon>
+            location_on
+          </mat-icon>
+
+          <span>
+            {{ interview.location || 'Location not specified' }}
+          </span>
+
+        </div>
+
+      </div>
+
+
+      <!-- FOOTER -->
+
+      <div
+        class="interview-footer"
+        fxLayout="row"
+        fxLayoutAlign="end center"
+        fxLayoutGap="12px"
+      >
+
+        <!-- Join Interview -->
+
+        <button
+          mat-raised-button
+          color="primary"
+
+          *ngIf="
+            (
+              interview.status === 'SCHEDULED' ||
+              interview.status === 'RESCHEDULED'
+            ) &&
+            interview.mode === 'ONLINE'
+          "
+
+          (click)="joinInterview(interview)"
+        >
+
+          <mat-icon>
+            videocam
+          </mat-icon>
+
+          Join Interview
+
+        </button>
+
+
+        <!-- Offline -->
+
+        <span
+          class="offline-text"
+
+          *ngIf="
+            (
+              interview.status === 'SCHEDULED' ||
+              interview.status === 'RESCHEDULED'
+            ) &&
+            interview.mode === 'OFFLINE'
+          "
+        >
+
+          <mat-icon>
+            location_on
+          </mat-icon>
+
+          In-person Interview
+
+        </span>
+
+      </div>
+
+    </mat-card>
+
+
+    <!-- NO INTERVIEWS -->
+
+    <div
+      class="no-interviews"
+
+      *ngIf="filteredInterviews.length === 0"
+
+      fxLayout="column"
+      fxLayoutAlign="center center"
+    >
+
+      <mat-icon>
+        event_busy
+      </mat-icon>
+
+      <h3>
+        No interviews found
+      </h3>
+
+      <p>
+        There are no interviews matching your search or filter.
+      </p>
+
+    </div>
+
+  </div>
+
+</div>

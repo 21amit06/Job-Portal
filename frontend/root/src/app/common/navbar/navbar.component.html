@@ -1,0 +1,137 @@
+<!-- <div>
+    <a routerLink="/" >Login</a>
+</div>
+<div>
+    <a routerLink="/register">Register</a>
+</div>
+
+
+<div *ngIf="role==='jobSeekers'">
+    <a routerLink="/jobseekers/dashboard">Dashboard</a>
+    <a routerLink="/jobseekers/profile">Profile</a>
+    <a routerLink="/jobseekers/interviews">Interviews</a>
+    <a routerLink="/jobseekers/jobs">Jobs</a>
+    <a routerLink="/jobseekers/applications">Application</a>
+    
+
+</div>
+
+<div *ngIf="role==='recuriter'">
+    <a routerLink="/recuriter/dashboard">Dashboard</a>
+    <a routerLink="/recuriter/profile">Profile</a>
+    <a routerLink="/recuriter/interviews">Interviews</a>
+    <a routerLink="/recuriter/jobs">JObs</a>
+    <a routerLink="/recuriter/applicant">Application</a>
+
+</div>
+
+<div *ngIf="role==='admin'">
+    <a routerLink="/admin/dashboard">Dashboard</a>
+    <a routerLink="/admin/users">Users</a>
+    <a routerLink="/admin/company">Company</a>
+    <a routerLink="/admin/jobs">Jobs</a>
+    
+
+</div>
+<router-outlet></router-outlet> -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<mat-toolbar
+  class="top-navbar"
+  fxLayout="row"
+  fxLayoutAlign="start center">
+
+  <!-- Logo -->
+  <div
+    class="logo-section"
+    fxLayout="row"
+    fxLayoutAlign="start center">
+
+    <mat-icon class="logo-icon">business_center</mat-icon>
+
+    <span class="logo-text">
+      Job<span>Portal</span>
+    </span>
+
+  </div>
+
+  <!-- Search -->
+  <div
+    class="navbar-search"
+    fxLayout="row"
+    fxLayoutAlign="start center">
+
+    <mat-icon>search</mat-icon>
+
+    <input
+      type="text"
+      placeholder="Search jobs, companies...">
+
+  </div>
+
+  <!-- Spacer -->
+  <div fxFlex></div>
+
+  <!-- Notification -->
+  <button
+    mat-icon-button
+    class="notification-button">
+
+    <mat-icon>notifications_none</mat-icon>
+
+    <span class="notification-count">
+      3
+    </span>
+
+  </button>
+
+  <!-- User -->
+  <div
+    class="user-section"
+    fxLayout="row"
+    fxLayoutAlign="center center"
+    fxLayoutGap="10px">
+
+    <div class="user-avatar">
+       {{ getUserInitials() }}
+    </div>
+
+    <div class="user-info">
+
+      <span class="user-name">
+           {{ user?.first_name }}
+
+      </span>
+
+      <span class="user-role">
+        {{ getUserRole() }}
+
+      </span>
+
+    </div>
+
+    <mat-icon class="dropdown-icon">
+      keyboard_arrow_down
+    </mat-icon>
+
+  </div>
+
+</mat-toolbar>

@@ -1,0 +1,178 @@
+<div class="notifications-page">
+
+  <!-- ================= HEADER ================= -->
+
+  <div
+    class="page-header"
+    fxLayout="row"
+    fxLayoutAlign="space-between center">
+
+    <div>
+
+      <h1>Notifications</h1>
+
+      <p>
+        Stay updated with your applications, interviews and job opportunities.
+      </p>
+
+    </div>
+
+
+    <button
+      mat-stroked-button
+      *ngIf="unreadCount > 0"
+      (click)="markAllAsRead()">
+
+      <mat-icon>done_all</mat-icon>
+
+      Mark all as read
+
+    </button>
+
+  </div>
+
+
+  <!-- ================= NOTIFICATION SUMMARY ================= -->
+
+  <mat-card class="summary-card">
+
+    <div
+      fxLayout="row"
+      fxLayoutAlign="start center"
+      fxLayoutGap="16px">
+
+      <div class="summary-icon">
+
+        <mat-icon>notifications</mat-icon>
+
+      </div>
+
+
+      <div>
+
+        <h3>
+          {{ unreadCount }} unread notifications
+        </h3>
+
+        <p>
+          You have {{ notifications.length }} total notifications.
+        </p>
+
+      </div>
+
+    </div>
+
+  </mat-card>
+
+
+  <!-- ================= NOTIFICATIONS ================= -->
+
+  <div class="notification-list">
+
+    <mat-card
+      class="notification-card"
+      [class.unread]="notification.unread"
+      *ngFor="let notification of notifications">
+
+      <div
+        fxLayout="row"
+        fxLayoutAlign="start center"
+        fxLayoutGap="16px">
+
+        <!-- ICON -->
+
+        <div
+          class="notification-icon"
+          [ngClass]="getIconClass(notification.type)">
+
+          <mat-icon>
+            {{ notification.icon }}
+          </mat-icon>
+
+        </div>
+
+
+        <!-- CONTENT -->
+
+        <div
+          class="notification-content"
+          fxFlex>
+
+          <div
+            fxLayout="row"
+            fxLayoutAlign="space-between start">
+
+            <div>
+
+              <h3>
+                {{ notification.title }}
+              </h3>
+
+              <p>
+                {{ notification.message }}
+              </p>
+
+            </div>
+
+
+            <span class="notification-time">
+              {{ notification.time }}
+            </span>
+
+          </div>
+
+
+          <!-- ACTIONS -->
+
+          <div
+            class="notification-actions"
+            fxLayout="row"
+            fxLayoutGap="8px">
+
+            <button
+              mat-button
+              *ngIf="notification.unread"
+              (click)="markAsRead(notification)">
+
+              Mark as read
+
+            </button>
+
+            <button
+              mat-button
+              (click)="deleteNotification(notification.id)">
+
+              Delete
+
+            </button>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </mat-card>
+
+  </div>
+
+
+  <!-- ================= EMPTY STATE ================= -->
+
+  <mat-card
+    class="empty-card"
+    *ngIf="notifications.length === 0">
+
+    <mat-icon>
+      notifications_none
+    </mat-icon>
+
+    <h2>No notifications</h2>
+
+    <p>
+      You're all caught up. New notifications will appear here.
+    </p>
+
+  </mat-card>
+
+</div>

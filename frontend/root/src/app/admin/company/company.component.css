@@ -1,0 +1,442 @@
+.company-page {
+  width: 100%;
+}
+
+
+/* Header */
+
+.page-header h1 {
+  margin: 0;
+  font-size: 28px;
+  font-weight: 700;
+  color: #202124;
+}
+
+.page-header p {
+  margin: 0;
+  font-size: 14px;
+  color: #70757a;
+}
+
+
+.filter-card {
+  width: 100%;
+  margin-left: -16px;
+  border-radius: 12px;
+  box-shadow: none;
+  box-sizing: border-box;
+  background: transparent !important;
+  border: none !important;
+}
+
+
+/* =========================
+   SEARCH FIELD
+   ========================= */
+
+.search-field {
+  margin-bottom: -1.25em;
+  width: 50%;
+  max-width: 400px;
+  min-width: 150px;
+}
+
+/* Search input wrapper */
+.searchinput {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-left: 0;
+  box-sizing: border-box;
+}
+
+.searchinput mat-icon {
+  flex: 0 0 18px;
+  width: 18px;
+  height: 18px;
+  font-size: 18px;
+  line-height: 18px;
+}
+
+.searchinput input {
+  flex: 1;
+  width: auto !important;
+  min-width: 0;
+  height: 20px;
+  padding: 0 !important;
+  margin: 0 !important;
+  border: none;
+  outline: none;
+  text-align: left;
+  font-family: 'Mulish', sans-serif;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  background-color: white;
+  color: #001333;
+  box-sizing: border-box;
+}
+
+/* =========================
+   MATERIAL FIELD HEIGHT
+   ========================= */
+
+::ng-deep .search-field .mat-mdc-text-field-wrapper,
+::ng-deep .filter-field .mat-mdc-text-field-wrapper {
+  height: 40px !important;
+}
+
+::ng-deep .search-field .mat-mdc-form-field-flex,
+::ng-deep .filter-field .mat-mdc-form-field-flex {
+  height: 40px !important;
+  align-items: center !important;
+}
+
+::ng-deep .search-field .mat-mdc-form-field-infix,
+::ng-deep .filter-field .mat-mdc-form-field-infix {
+  min-height: 40px !important;
+  height: 40px !important;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+}
+
+
+/* =========================
+   FILTER FIELDS
+   ========================= */
+
+.filter-field {
+  width: 180px;
+  margin-bottom: -1.25em;
+}
+::ng-deep .filter-field .mat-mdc-select-value {
+  font-family: 'Mulish', sans-serif;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  color: #001333;
+}
+
+/* Selected value should be vertically centered */
+::ng-deep .filter-field .mat-mdc-select-value {
+  display: flex !important;
+  align-items: center !important;
+  height: 40px !important;
+}
+
+::ng-deep .filter-field .mat-mdc-select-trigger {
+  height: 40px !important;
+  display: flex !important;
+  align-items: center !important;
+}
+
+
+/* =========================
+   LABEL
+   ========================= */
+
+
+.filter-field mat-label {
+  font-family: 'Mulish', sans-serif;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+}
+
+
+/* =========================
+   SELECT ARROW
+   ========================= */
+
+::ng-deep .filter-field .mat-mdc-select-arrow-wrapper {
+  height: 40px !important;
+  display: flex !important;
+  align-items: center !important;
+  margin-right: -6px !important;
+  margin-top: 0 !important;
+  transform: none !important;
+}
+
+
+/* Table */
+
+.table-card {
+  padding: 0;
+  min-width: 500px;
+  border-radius: 12px;
+  box-shadow: none;
+  border: 1px solid #e4e6eb;
+  overflow: hidden;
+}
+
+.table-container {
+  width: 100%;
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+thead {
+  background: #f7f8fa;
+}
+
+th {
+  padding: 16px;
+  text-align: left;
+  font-size: 13px;
+  font-weight: 600;
+  color: #60646c;
+  white-space: nowrap;
+}
+
+td {
+  padding: 16px;
+  border-top: 1px solid #ffff;
+  font-size: 14px;
+  color: #40434a;
+  white-space: nowrap;
+}
+
+
+/* Company */
+
+.company-logo {
+  width: 42px;
+  height: 42px;
+  border-radius: 8px;
+  background: #eeeeff;
+  color: #4f46e5;
+
+  font-size: 18px;
+  font-weight: 700;
+
+  text-align: center;
+  line-height: 42px;
+}
+
+.company-name {
+  font-weight: 600;
+  color: #202124;
+}
+
+.company-email {
+  margin-top: 3px;
+  font-size: 12px;
+  color: #8a8f98;
+}
+
+
+/* Location */
+
+.location-icon {
+  font-size: 18px;
+  width: 18px;
+  height: 18px;
+  color: #777b84;
+}
+
+
+/* Status */
+
+.status {
+  padding: 5px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.status.active {
+  background: #e8f7ee;
+  color: #1e8e4d;
+}
+
+.status.pending {
+  background: #fff4d6;
+  color: #b77900;
+}
+
+.status.suspended {
+  background: #fdeaea;
+  color: #d93025;
+}
+
+
+/* Actions */
+
+td button {
+  margin-right: 2px;
+}
+
+
+/* Empty state */
+
+.no-data {
+  height: 180px;
+  text-align: center;
+  color: #888;
+}
+
+.no-data mat-icon {
+  font-size: 40px;
+  width: 40px;
+  height: 40px;
+}
+
+.no-data p {
+  margin-top: 10px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.filter-card {
+  width: 100%;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: none;
+  box-sizing: border-box;
+  background: transparent !important;
+  border: none !important;
+}
+
+
+/* =========================
+   SEARCH FIELD
+   ========================= */
+
+.search-field {
+  margin-bottom: -1.25em;
+}
+
+/* Search input wrapper */
+.searchinput {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-left: 0;
+  box-sizing: border-box;
+}
+
+.searchinput mat-icon {
+  flex: 0 0 18px;
+  width: 18px;
+  height: 18px;
+  font-size: 18px;
+  line-height: 18px;
+}
+
+.searchinput input {
+  flex: 1;
+  width: auto !important;
+  min-width: 0;
+  height: 20px;
+  padding: 0 !important;
+  margin: 0 !important;
+  border: none;
+  outline: none;
+  text-align: left;
+  font-family: 'Mulish', sans-serif;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  background-color: white;
+  color: #001333;
+  box-sizing: border-box;
+}
+
+/* =========================
+   MATERIAL FIELD HEIGHT
+   ========================= */
+
+::ng-deep .search-field .mat-mdc-text-field-wrapper,
+::ng-deep .filter-field .mat-mdc-text-field-wrapper {
+  height: 40px !important;
+}
+
+::ng-deep .search-field .mat-mdc-form-field-flex,
+::ng-deep .filter-field .mat-mdc-form-field-flex {
+  height: 40px !important;
+  align-items: center !important;
+}
+
+::ng-deep .search-field .mat-mdc-form-field-infix,
+::ng-deep .filter-field .mat-mdc-form-field-infix {
+  min-height: 40px !important;
+  height: 40px !important;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+}
+
+
+/* =========================
+   FILTER FIELDS
+   ========================= */
+
+.filter-field {
+  width: 180px;
+  margin-bottom: -1.25em;
+}
+
+
+/* Selected value should be vertically centered */
+::ng-deep .filter-field .mat-mdc-select-value {
+  display: flex !important;
+  align-items: center !important;
+  height: 40px !important;
+}
+
+::ng-deep .filter-field .mat-mdc-select-trigger {
+  height: 40px !important;
+  display: flex !important;
+  align-items: center !important;
+}
+
+
+/* =========================
+   LABEL
+   ========================= */
+
+
+.filter-field mat-label {
+  font-family: 'Mulish', sans-serif;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+}
+
+
+/* =========================
+   SELECT ARROW
+   ========================= */
+
+::ng-deep .filter-field .mat-mdc-select-arrow-wrapper {
+  height: 40px !important;
+  display: flex !important;
+  align-items: center !important;
+  padding-right: 7px !important;
+  margin-top: 0 !important;
+  transform: none !important;
+}

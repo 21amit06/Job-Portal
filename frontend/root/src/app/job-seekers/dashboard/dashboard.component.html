@@ -1,0 +1,510 @@
+<div
+  class="dashboard"
+  fxLayout="column"
+  fxLayoutGap="24px">
+
+  <!--  HEADING  -->
+
+  <div class="welcome-section">
+
+    <h1>
+      Welcome back, {{ userName }}! 
+    </h1>
+
+    <p>
+      Find your dream job and build your career
+    </p>
+
+  </div>
+
+
+  <!--  STATISTICS  -->
+
+  <div
+    class="stats-container"
+    fxLayout="row"
+    fxLayoutGap="20px">
+
+
+    <!-- Applications -->
+
+    <mat-card
+      class="stat-card"
+      fxFlex>
+
+      <div
+        fxLayout="row"
+        fxLayoutAlign="space-between center">
+
+        <div>
+
+          <h2>
+            {{ applicationCount }}
+          </h2>
+
+          <p>
+            Applications
+          </p>
+
+        </div>
+
+        <div class="stat-icon blue">
+
+          <mat-icon>
+            description
+          </mat-icon>
+
+        </div>
+
+      </div>
+
+    </mat-card>
+
+
+    <!-- Interviews -->
+
+    <mat-card
+      class="stat-card"
+      fxFlex>
+
+      <div
+        fxLayout="row"
+        fxLayoutAlign="space-between center">
+
+        <div>
+
+          <h2>
+            {{ interviewCount }}
+          </h2>
+
+          <p>
+            Interviews
+          </p>
+
+        </div>
+
+        <div class="stat-icon purple">
+
+          <mat-icon>
+            people
+          </mat-icon>
+
+        </div>
+
+      </div>
+
+    </mat-card>
+
+
+    <!-- Offers -->
+
+    <mat-card
+      class="stat-card"
+      fxFlex>
+
+      <div
+        fxLayout="row"
+        fxLayoutAlign="space-between center">
+
+        <div>
+
+          <h2>
+            {{ offerCount }}
+          </h2>
+
+          <p>
+            Offers
+          </p>
+
+        </div>
+
+        <div class="stat-icon green">
+
+          <mat-icon>
+            check_circle_outline
+          </mat-icon>
+
+        </div>
+
+      </div>
+
+    </mat-card>
+
+
+    <!-- Saved Jobs -->
+
+    <mat-card
+      class="stat-card"
+      fxFlex>
+
+      <div
+        fxLayout="row"
+        fxLayoutAlign="space-between center">
+
+        <div>
+
+          <h2>
+            {{ savedJobCount }}
+          </h2>
+
+          <p>
+            Saved Jobs
+          </p>
+
+        </div>
+
+        <div class="stat-icon orange">
+
+          <mat-icon>
+            bookmark_border
+          </mat-icon>
+
+        </div>
+
+      </div>
+
+    </mat-card>
+
+  </div>
+
+
+  <!--  MIDDLE SECTION  -->
+
+  <div
+    class="middle-section"
+    fxLayout="row"
+    fxLayoutGap="24px">
+
+
+    <!--  RECOMMENDED JOBS  -->
+
+    <mat-card
+      class="jobs-card"
+      fxFlex>
+
+
+      <!-- Card Header -->
+
+      <div
+        class="card-header"
+        fxLayout="row"
+        fxLayoutAlign="space-between center">
+
+        <h2>
+          Recommended Jobs
+        </h2>
+
+        <button
+          mat-button
+          color="primary">
+
+          View all
+
+        </button>
+
+      </div>
+
+
+      <!--  JOB LIST  -->
+
+      <div
+        class="job-row"
+        *ngFor="let job of jobs">
+
+
+        <!-- Company Logo -->
+
+        <div
+          class="company-logo"
+          fxLayout="row"
+          fxLayoutAlign="center center">
+
+          {{ job.company_name?.substring(0, 2)?.toUpperCase() }}
+
+        </div>
+
+
+        <!-- Job Information -->
+
+        <div
+          class="job-info"
+          fxFlex>
+
+          <h3>
+            {{ job.title }}
+          </h3>
+
+          <p>
+            {{ job.company_name }}
+          </p>
+
+        </div>
+
+
+        <!-- Location -->
+
+        <div class="job-location">
+
+          <mat-icon>
+            location_on
+          </mat-icon>
+
+          <span>
+            {{ job.location || 'Location not specified' }}
+          </span>
+
+        </div>
+
+
+        <!-- Salary -->
+
+        <div class="salary">
+
+          <span
+            *ngIf="job.salary_min && job.salary_max">
+
+            ₹{{ job.salary_min / 100000 | number:'1.0-2' }}
+            -
+            ₹{{ job.salary_max / 100000 | number:'1.0-2' }}
+            LPA
+
+          </span>
+
+          <span
+            *ngIf="!job.salary_min || !job.salary_max">
+
+            Salary not specified
+
+          </span>
+
+        </div>
+
+
+        <!-- Posted Date -->
+
+        <div class="posted">
+
+          {{ job.created_at | date:'shortDate' }}
+
+        </div>
+
+      </div>
+
+
+      <!-- No Jobs -->
+
+      <div
+        class="no-jobs"
+        *ngIf="jobs.length === 0">
+
+        <mat-icon>
+          work_off
+        </mat-icon>
+
+        <p>
+          No jobs available
+        </p>
+
+      </div>
+
+    </mat-card>
+
+
+
+    <!--  ACTIVITY  -->
+
+    <mat-card
+      class="activity-card"
+      fxFlex="40">
+
+      <h2>
+        Activity
+      </h2>
+
+
+      <!-- Activity 1 -->
+
+      <div class="activity-item">
+
+        <div class="activity-icon">
+
+          <mat-icon>
+            description
+          </mat-icon>
+
+        </div>
+
+        <div fxFlex>
+
+          <h3>
+            Application submitted
+          </h3>
+
+          <p>
+            {{ jobs[0]?.title || 'Job Title' }}
+          </p>
+
+        </div>
+
+        <span>
+  {{ jobs[0]?.created_at ? (jobs[0].created_at | date:'shortTime') : 'Time' }}
+</span>
+
+      </div>
+
+
+      <!-- Activity 2 -->
+
+      <div class="activity-item">
+
+        <div class="activity-icon">
+
+          <mat-icon>
+            event
+          </mat-icon>
+
+        </div>
+
+        <div fxFlex>
+
+          <h3>
+            Interview scheduled
+          </h3>
+
+          <p>
+           {{interviews}}
+          </p>
+
+        </div>
+
+        <span>
+          1d ago
+        </span>
+
+      </div>
+
+
+      <!-- Activity 3 -->
+
+      <div class="activity-item">
+
+        <div class="activity-icon green">
+
+          <mat-icon>
+            visibility
+          </mat-icon>
+
+        </div>
+
+        <div fxFlex>
+
+          <h3>
+            Profile viewed
+          </h3>
+
+          <p>
+            by Tech Solutions Inc.
+          </p>
+
+        </div>
+
+        <span>
+          2d ago
+        </span>
+
+      </div>
+
+
+      <!-- Activity 4 -->
+
+      <div class="activity-item">
+
+        <div class="activity-icon orange">
+
+          <mat-icon>
+            bookmark_border
+          </mat-icon>
+
+        </div>
+
+        <div fxFlex>
+
+          <h3>
+            Job saved
+          </h3>
+
+          <p>
+            Product Manager at InnovateX
+          </p>
+
+        </div>
+
+        <span>
+          3d ago
+        </span>
+
+      </div>
+
+    </mat-card>
+
+  </div>
+
+
+
+  <!--  PROFILE COMPLETION  -->
+
+  <mat-card
+    class="profile-card">
+
+    <div
+      fxLayout="row"
+      fxLayoutAlign="space-between center">
+
+      <div>
+
+        <h2>
+          Complete Your Profile
+        </h2>
+
+        <p>
+          Increase your chances of getting hired
+        </p>
+
+      </div>
+
+
+      <button
+        mat-raised-button
+        color="primary"
+        [routerLink]="['/jobseekers/profile']">
+
+        Update Profile
+
+      </button>
+
+    </div>
+
+
+    <!-- Progress -->
+
+    <div
+      class="progress-section"
+      fxLayout="row"
+      fxLayoutAlign="start center"
+      fxLayoutGap="12px">
+
+      <mat-progress-bar
+        mode="determinate"
+        value="75"
+        fxFlex>
+      </mat-progress-bar>
+
+      <span>
+        75%
+      </span>
+
+    </div>
+
+  </mat-card>
+
+</div>
